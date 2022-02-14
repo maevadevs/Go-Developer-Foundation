@@ -1,0 +1,26 @@
+// Package
+// *******
+package main
+
+// Imports
+// *******
+
+
+// Testing With Go
+// ***************
+//	- Very small set of functions for testing
+//		- Not similar to using the Testing Framework
+//		- We write Go code to test Go code
+//	- Create a new file ending in _test.go: E.g. For testing deck.go --> deck_test.go
+//	- To run all the tests in the package: > go test
+
+// How do we know what to test?
+// ****************************
+// 	What makes sense
+//	What do you really care about with the feature?
+
+// Functions
+// *********
+func main() {}
+
+// > go run main.go deck.go
