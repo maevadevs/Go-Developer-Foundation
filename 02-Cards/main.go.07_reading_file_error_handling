@@ -1,0 +1,41 @@
+// Package
+// *******
+package main
+
+// Imports
+// *******
+// To deal with underlying OS files, we make use of the ioutil standard package
+//	- Use ReadFile(filename string) to read from a file
+//		- Returns a []byte or error
+import (
+	"fmt"
+	"io/ioutil"
+)
+
+// Functions
+// *********
+func main() {
+
+	// Reading from the previously stored file
+	greeting_byte, err := ioutil.ReadFile("datasave_hello_world.tmp")
+
+	// Error Handling
+	//	If there was any error in reading the file, the err will be not nil
+	if err != nil {
+		// We have an error: Create a new case
+		// Using Type Conversion: String to []byte
+		fmt.Println("Error:", err, "Creating a new file.")
+		greeting_str := "Hello World!"
+		greeting_byte = []byte(greeting_str)
+	}
+
+	// If here, then there was no error
+	fmt.Println(greeting_byte)
+
+	// Now, we can use WriteFile(filename, byte_slice, permission)
+	//	We will just use a permission of 0666
+	//	WriteToFile returns an error type by default
+	ioutil.WriteFile("datasave_hello_world.tmp", greeting_byte, 0666)
+}
+
+// > go run main.go deck.go

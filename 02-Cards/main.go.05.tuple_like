@@ -1,0 +1,77 @@
+/**
+ * @file: Describes what a Deck type is and how it works
+ */
+
+// Package
+// *******
+package main
+
+// Imports
+// *******
+import "fmt"
+
+// Type Declaration
+// ****************
+// A Deck type is a slice of string with additional functionalities
+type deck []string
+
+// Tuple-Like Assignement and Usage
+// ********************************
+//	- We can return multiple values using tuple-like
+//		- On function, make sure to annotate the return type using a tuple-like
+//	- We can also assign multiple variables using tuple-like unpacking
+
+// Deal(): Receiver Function to deal cards from the deck
+// *****************************************************
+//	- Go can return multiple values using tuple-like
+//	- We want to return the "hand" and the "remaining deck"
+func (d deck) deal(hand_size int) (deck, deck) {
+
+	// Split the original deck into 2 using the hand_size
+	hand := d[:hand_size]
+	rem_deck := d[hand_size:]
+
+	// Return the "hand" and the "remaining deck" as a tuple
+	return hand, rem_deck
+}
+
+// print(): Receiver Functions for the deck type to print the value representation of a deck
+// *****************************************************************************************
+func (d deck) print() {
+	/**
+	 * @func: Loop through the deck instance and print out the values of all cards
+	 */
+	for _, card := range d {
+		// "card" - Becomes the equivalent to "this" or "self" in OOP, a variable reference to the "instance" of the type
+		fmt.Println(card)
+	}
+}
+
+// newDeck(): Initialize and create a new deck of cards
+// ****************************************************
+func newDeck() deck {
+
+	cards := deck{}
+
+	// Suits
+	suits := []string{"Spade", "Diamond", "Heart", "Club"}
+
+	// Values
+	values := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
+
+	// Build the combinations
+	for _, suit := range suits {
+
+		for _, value := range values {
+
+			// Create the new card
+			new_card := value + " of " + suit
+			// Append the new card to  the deck
+			cards = append(cards, new_card)
+
+		}
+	}
+
+	// Return the new deck
+	return cards
+}

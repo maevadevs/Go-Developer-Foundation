@@ -1,0 +1,53 @@
+// Package
+// *******
+package main
+
+// Imports
+// *******
+import "fmt"
+
+// Functions
+// *********
+func main() {
+
+	// Variables
+	// *********
+	// - Variables can be initialized outside of a function
+	// - But they can only be assigned a value inside a function
+
+	// Basic Declaration Format: var <name> <type> = <value>
+	var card_1 string = "Ace of Spade"
+
+	// - var: Keyword to create a new variable
+	// 		- Every declared variables must be used
+	// - card_1: Name the variable
+	// - string: Data Type of the variable
+	// 		- Go is a statically-typed language:
+	//		- The variable type follows the variable name
+	// 		- Go Fundamental Types:
+	//			- string
+	//			- bool
+	//			- int
+	//			- float64
+
+	// - We can also initialized and then assigned later
+	// - Variable can be initialized outside of a function, but can only be assigned inside a function
+	var card_2 string     // Declare
+	card_2 = "5 of Heart" // Assign
+
+	// Shortcut Declaration Format: var <name> = <value>
+	// - Go can also automatically infer the variable type from the assigned value
+	// 		- We use ":=" and ommit the "var" keyword
+	// 		- Only use ":=" when declaring a new variable with initialization and type inference
+	card_3 := "5 of Heart" // This is completely equivalent to the above declaration
+
+	// - Obviously, we can re-assign value to any variable
+	//		- Make sure to use "=" intead of ":="
+	// 		- Make sure that the type of the value matches the type of the variable
+	card_3 = "5 of Diamond"
+
+	// Making use of the variables
+	fmt.Println(card_1)
+	fmt.Println(card_2)
+	fmt.Println(card_3)
+}
