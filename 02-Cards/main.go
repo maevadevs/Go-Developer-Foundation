@@ -52,6 +52,16 @@ func main() {
 	fmt.Println("--- Reading from saved file --- ")
 	playing_deck = newDeckFromFile("datasave_current_deck.tmp")
 	fmt.Println(playing_deck.toString())
+
+	// Testing Shuffling
+	playing_deck = newDeck()
+	fmt.Println("---")
+	fmt.Println("Before Shuffling The Deck:")
+	fmt.Println(playing_deck.toString())
+	fmt.Println("---")
+	fmt.Println("After Shuffling The Deck:")
+	playing_deck.shuffle()
+	fmt.Println(playing_deck.toString())
 }
 
 // > go run main.go deck.go

@@ -11,7 +11,9 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"strings"
+	"time"
 )
 
 // Type Declaration
@@ -147,4 +149,30 @@ func newDeckFromFile(filename string) deck {
 
 	// We can use the slice of strings to convert into an actual deck
 	return deck(deck_strs)
+}
+
+// Shuffle(): Receiver Function that shuffle the deck
+// **************************************************
+// Go does not have a standard way to randomize order in a slice
+// So we will put our custom logic instead: With Time-Based Random Number Generator
+func (d deck) shuffle() {
+
+	// Time-Based Random Number Generator
+	source := rand.NewSource(time.Now().UnixNano())
+	rand_gen := rand.New(source)
+
+	// Go through the list of cards
+	for current_i := range d {
+
+		// Generate a random index number: [0, len(d)-1]
+		//	We can make use of the math.intn() function for this
+		//	By default, the random number generator will always use the exact same seed
+		//	Without a new seed, we will always get the exact same sequence
+		//	We make use of the defined Time-Based Random Number Generator
+		random_i := rand_gen.Intn(len(d) - 1)
+
+		// Swap the current card and the card at the random index number
+		// Same syntax as Python Tuple for swapping
+		d[random_i], d[current_i] = d[current_i], d[random_i]
+	}
 }
