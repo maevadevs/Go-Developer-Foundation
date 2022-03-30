@@ -1,21 +1,15 @@
-// Package
-// *******
 package main
 
-// Imports
-// *******
 import "fmt"
 
-// Functions
-// *********
 func main() {
 
 	// Variables
-    // *********
-	//	- We are calling a function and assign its return value to the variable
-	//	- When calling a function, the return type of the function becomes the type of the variable it is assigned to
-	card := newCard()
-	age := getAge()
+	// *********
+	//	We are calling a function and assigning its return value to the variable
+	//	When calling a function, the return type of the function becomes the type of the variable it is assigned to
+	card := newCard() // string
+	age := getAge()   // int
 
 	// Making use of the variables
 	fmt.Println(card)
@@ -26,7 +20,7 @@ func main() {
 // ****************
 //	- Basic Format: func <name>(<args>) <returnType?> { <body> ... <return?> }
 // 	- A function returning a value needs to declare its return type in its declaration
-//	- If the function returns nothing, skip the <returnType>
+//	- If the function returns nothing (e.g. only prints), skip the <returnType>
 func newCard() string {
 	return "5 of Diamonds"
 }
@@ -34,3 +28,6 @@ func newCard() string {
 func getAge() int {
 	return 20
 }
+
+// > go run main.go
+// > go build main.go && ./main.exe

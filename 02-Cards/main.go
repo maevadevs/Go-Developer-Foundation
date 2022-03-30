@@ -1,18 +1,14 @@
-// Package
-// *******
 package main
 
-// Imports
-// *******
 import "fmt"
 
 // NOTE: GO IS NOT OOP
 // *******************
 // There is no use of Classes inside of Go
-// Instead, we use "type"
-// Go has its basic data types
+// Instead, we use "types" and "Receivers"
+// Go has its basic data types:
 //	- We want to "extend" a base type and add some extra functionalities to it
-//	- To work with them, we will use "Functions With A Receiver"
+//	- To work with them, we will use "Functions As A Receiver"
 //		- Similar to method that can work with specific custom types
 
 // Project Structure
@@ -24,8 +20,6 @@ import "fmt"
 
 // When executing a programm with multiple files: > go run main.go deck.go
 
-// Functions
-// *********
 func main() {
 
 	// Variables: deck type
@@ -65,3 +59,4 @@ func main() {
 }
 
 // > go run main.go deck.go
+// > go build main.go deck.go && ./main.exe

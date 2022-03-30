@@ -1,13 +1,8 @@
 /**
  * @file: Describes what a Deck type is and how it works
  */
-
-// Package
-// *******
 package main
 
-// Imports
-// *******
 import (
 	"fmt"
 	"io/ioutil"
@@ -30,8 +25,8 @@ type deck []string
 //			- With Go, we never use "this" or "self"
 //			- Instead, by convention, we typically use the shortened version of the type
 
-// print(): Receiver Functions for the deck type to print the value representation of a deck
-// *****************************************************************************************
+// deck.print(): Receiver Functions for the deck type to print the value representation of a deck
+// **********************************************************************************************
 func (d deck) print() {
 	/**
 	 * @func: Loop through the deck instance and print out the values of all cards
@@ -44,8 +39,11 @@ func (d deck) print() {
 
 // newDeck(): Initialize and create a new deck of cards
 // ****************************************************
+//	This is akin to a "Constructor", but we are not using OOP
+//	In our case, this is just type-instance generator function
 func newDeck() deck {
 
+	// A deck is just an abstraction of a slice of strings
 	cards := deck{}
 
 	// Suits
@@ -56,14 +54,11 @@ func newDeck() deck {
 
 	// Build the combinations
 	for _, suit := range suits {
-
 		for _, value := range values {
-
 			// Create the new card
 			new_card := value + " of " + suit
 			// Append the new card to  the deck
 			cards = append(cards, new_card)
-
 		}
 	}
 
@@ -71,8 +66,8 @@ func newDeck() deck {
 	return cards
 }
 
-// Deal(): Receiver Function to deal cards from the deck
-// *****************************************************
+// deck.Deal(): Receiver Function to deal cards from the deck
+// **********************************************************
 //	- Go can return multiple values using tuple-like
 //	- We want to return the "hand" and the "remaining deck"
 func (d deck) deal(hand_size int) (deck, deck) {
@@ -85,8 +80,8 @@ func (d deck) deal(hand_size int) (deck, deck) {
 	return hand, rem_deck
 }
 
-// ToString(): Receiver Function to convert a deck into its string representation
-// ******************************************************************************
+// deck.ToString(): Receiver Function to convert a deck into its string representation
+// ***********************************************************************************
 func (d deck) toString() string {
 
 	// deck -> []string
@@ -100,12 +95,12 @@ func (d deck) toString() string {
 	return d_str
 }
 
-// SaveToFile(): Receiver Function to save the deck to a file
-// **********************************************************
+// deck.SaveToFile(): Receiver Function to save the deck to a file
+// ***************************************************************
 // To deal with underlying OS files, we make use of the ioutil standard package
 // Use WriteFile(filename string, data []byte, permissions os.FileMode) to write to a file
 //	- It returns an error type if there is any
-// deck -> []string -> string -> []byte
+// 	- deck -> []string -> string -> []byte
 func (d deck) saveToFile(filename string) error {
 
 	// First, convert the deck to string: deck -> []string -> string
@@ -118,7 +113,7 @@ func (d deck) saveToFile(filename string) error {
 	return ioutil.WriteFile(filename, d_bytes, 0666)
 }
 
-// NewDeckFromFile(): Function to create a new deck from an existing save file
+// newDeckFromFile(): Function to create a new deck from an existing save file
 // **************************************************************************
 func newDeckFromFile(filename string) deck {
 
@@ -151,8 +146,8 @@ func newDeckFromFile(filename string) deck {
 	return deck(deck_strs)
 }
 
-// Shuffle(): Receiver Function that shuffle the deck
-// **************************************************
+// deck.Shuffle(): Receiver Function that shuffle the deck
+// *******************************************************
 // Go does not have a standard way to randomize order in a slice
 // So we will put our custom logic instead: With Time-Based Random Number Generator
 func (d deck) shuffle() {

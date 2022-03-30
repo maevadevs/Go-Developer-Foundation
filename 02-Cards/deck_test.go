@@ -1,15 +1,12 @@
-// Package
-// *******
 package main
 
-// Imports
-// *******
 import (
 	"os"
 	"testing"
 )
 
-// Test Cases for newDeck():
+// Test Cases for newDeck()
+// ************************
 //	- A deck should be created with x number of cards
 //	- The 1st card should be an "A of Spade"
 //	- The last card should be a "K of Club"
