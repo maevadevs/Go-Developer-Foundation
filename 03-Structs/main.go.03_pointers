@@ -1,0 +1,130 @@
+package main
+
+import "fmt"
+
+// Pass-By-Value & Pointers
+// ************************
+type contactInfo struct {
+	email    string
+	zip_code int
+}
+type person struct {
+	first_name string
+	last_name  string
+	contact    contactInfo
+}
+
+// Receiver function for "person"
+func (p person) print() {
+	fmt.Printf("%+v\n", p)
+}
+
+// By default, Go is a pass-by-value language
+func (p person) updateNameValue(new_first_name string) {
+	p.first_name = new_first_name
+}
+
+// Using pointer as receiver allows us to pass-by-reference
+// *var - Operator to access the value that exist at the memory address (pointer)
+// *person - A type of Pointer that point to a person type
+func (ptr *person) updateNamePointer(new_first_name string) {
+	(*ptr).first_name = new_first_name
+}
+
+func main() {
+	jim := person{
+		first_name: "Jim",
+		last_name:  "Patterson",
+		contact: contactInfo{
+			email:    "jim@patterson.com",
+			zip_code: 98765,
+		},
+	}
+	// Calling a receiver function
+	jim.print()
+	jim.updateNameValue("Jimmy")
+	jim.print()
+
+	// Why did it not update the name to "Jimmy"?
+	//	- Because of Pointers in Go
+	//	- A struct variable is a pointer type: Points to a value stored in memory
+	//	- Go is a "Pass-By-Value" language
+	//		- With jim.updateName(), the value is copied and stored in a new location in memory
+	//		- However, the variable "jim" is still pointing to the old value
+	//		- We are not updating the original struct: We are copying the newly assigned value into a different location is memory
+	//	- To solve this issue, we use Pointers to force Go to "Pass-By-Reference":
+	//		- We use the & sign to create a reference
+
+	(&jim).updateNamePointer("Jimmy")
+	jim.print()
+
+	// With Go, it is possible to substitute a pointer with its root variable
+	// So the following still work, even if the receiver requires a pointer type
+	jim.updateNamePointer("Big ol'Jim")
+	jim.print()
+
+	// ABOUT POINTERS
+	// **************
+	// & - Operator to access the memory address that the variable is pointing to
+
+	// Variable Pointer (Reference)
+	//	- Points to a memory address
+	//	- Turn into equivalent Value using *
+	// Variable Value
+	//	- Contains the actual value stored in a memory address
+	//	- Turn into equivalent Pointer using &
+	// *var - Operator to access the value that exist at the memory address (pointer)
+	// *type - A Pointer type that point to a memory address whose value is the type
+
+	// POINTER GOTCHAS
+	// ***************
+	// Go is typically a Pass-By-Value language
+	// However, Slices are passed by Reference (Pointer) for better performance
+	// Arrays are passed by values though!!
+	// When we create a slice, Go internally creates 2 separate data structure:
+	//	- The slice DS
+	//		- Pointer to the underlying array -> Points to a different address in memory
+	//		- Capacity
+	//		- Length
+	//	- An underlying Array
+	//		- Contains the actual list of items
+	// When we modifying the array, the slice DS gets moved around, but it is still pointing to the same underlying Array
+
+	fmt.Println("--------------------------------------------")
+
+	mySlice := []string{"Hi", "there", "how", "are", "you"}
+	myArray := [4]string{"This", "is", "an", "Array"}
+
+	updateSlice(mySlice)
+	updateArray(myArray)
+
+	fmt.Println(mySlice)
+	fmt.Println(myArray)
+}
+
+func updateSlice(s []string) {
+	s[0] = "Bye"
+}
+
+func updateArray(arr [4]string) {
+	arr[0] = "What"
+}
+
+// List of Data Structures that are passed BY REFERENCE (REFERENCE TYPES):
+// No need to use pointers with these
+//	- Slice
+//	- Maps
+//	- Channels
+//	- Pointers
+//	- Functions
+
+// List of Data Structures that are passed BY VALUE (VALUES TYPES):
+// Use pointers to change the underlying values for these in functions
+//	- int
+//	- float64
+//	- string
+//	- bool
+//	- struct
+
+// > go run main.go
+// > go build main.go && ./main.exe
