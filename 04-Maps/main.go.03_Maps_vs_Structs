@@ -1,0 +1,47 @@
+package main
+
+import "fmt"
+
+// Type definitions
+type hashmap map[string]string
+
+// Function Declarations
+func main() {
+
+	// A map of <string> => <string>
+	base_colors := hashmap{
+		"red":   "ff0000",
+		"green": "00ff00",
+		"blue":  "0000ff",
+		"white": "ffffff",
+		"black": "000000",
+	}
+
+	// Using a receiver function to print the map
+	base_colors.print()
+
+}
+
+// Receiver Functions
+func (c hashmap) print() {
+	for color, hex := range c {
+		fmt.Printf("Colors{%s: %s}\n", color, hex)
+	}
+}
+
+// Maps vs Struct
+// **************
+// 	MAPS (Dictionaries)									# 	STRUCTS (Objects)
+//	****												# 	*******
+//	- All keys must be of the same type					#	- Values can be of different types
+//	- All values must be of the same type				#	- Values can be of different types
+//	- Keys are indexed and are iterable					#	- Keys are not indexed, cannot iterate over
+//	- To represent a collection of "related" properties	#	- To represent an "object" with a lot of different properties
+//	- Don't need to know all the keys at compile time	#	- Need to know all the different fields at compile time
+//	- Reference Type									#	- Value Type
+
+// In the vast majority, we usually end up using Structs than Maps
+// But it really depends on each use cases
+
+// > go run main.go
+// > go build main.go && ./main.exe

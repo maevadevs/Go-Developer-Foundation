@@ -1,0 +1,52 @@
+package main
+
+import "fmt"
+
+// Maps:
+// ****
+//	- Very similar to structs, but a collection of Key-Value Pairs
+//	- Similar to a Dictionaries in Python
+//	- But how is it different from a Struct? (Since Structs are also Key-Value Pairs)
+//	- In Maps, both the Keys and Values are statically-typed
+//		- All the keys must be of the same exact type
+//		- All the values must be of the same type
+//		- For example: key<int> => value<string>
+
+func main() {
+
+	// A map of <string> => <string>
+	base_colors := map[string]string{
+		"red":   "ff0000",
+		"green": "00ff00",
+		"blue":  "0000ff",
+	}
+
+	// Print the map to see its format
+	fmt.Println("base_colors:", base_colors)
+
+	// We can also declare a map using var
+	// Default zero-value for map is an empty-map: map[]
+	var colors map[string]string // DO NOT USE THIS METHOD!
+	fmt.Println("colors:", colors)
+
+	// Map types are reference types, like pointers or slices
+	// 	The value of above is nil: it does not point to an initialized map
+	// 	A nil map behaves like an empty map when reading, but attempts to write to a nil map will cause a runtime panic
+	//	Do not do that! To initialize a map, use the built in make function instead
+	alternate_colors := make(map[string]string)
+	fmt.Println("alternate_colors:", alternate_colors)
+
+	// To add values to an existing map, we can use [] syntax
+	// 	We cannot use the dot-syntax with maps because all the keys are typed
+	alternate_colors["white"] = "ffffff"
+	alternate_colors["black"] = "000000"
+	fmt.Println("alternate_colors:", alternate_colors)
+
+	// We can use the built-in function delete() to delete an existing mapping inside a map
+	delete(alternate_colors, "white")
+	fmt.Println("alternate_colors:", alternate_colors)
+
+}
+
+// > go run main.go
+// > go build main.go && ./main.exe

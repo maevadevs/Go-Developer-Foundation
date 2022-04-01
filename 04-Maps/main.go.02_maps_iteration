@@ -1,0 +1,36 @@
+package main
+
+import "fmt"
+
+// Type definitions
+type hashmap map[string]string
+
+// Function Declarations
+func main() {
+
+	// A map of <string> => <string>
+	base_colors := hashmap{
+		"red":   "ff0000",
+		"green": "00ff00",
+		"blue":  "0000ff",
+		"white": "ffffff",
+		"black": "000000",
+	}
+
+	// Using a receiver function to print the map
+	base_colors.print()
+
+}
+
+// Iteration Over Maps
+// *******************
+// 	Very similar to iterating over slices
+
+func (c hashmap) print() {
+	for color, hex := range c {
+		fmt.Printf("Colors{%s: %s}\n", color, hex)
+	}
+}
+
+// > go run main.go
+// > go build main.go && ./main.exe
