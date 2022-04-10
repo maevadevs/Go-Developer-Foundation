@@ -25,12 +25,10 @@ func main() {
 	// Variables: deck type
 	playing_deck := newDeck() // deck is a slice of strings
 
-	// Calling Type Receiver Function
-	// cards.print()
-
-	// Deal 3 cards
+	// Calling Type Receiver Function: Deal 3 cards
 	hand, playing_deck := playing_deck.deal(5)
 
+	// Calling Type Receiver Function: Print to screen
 	hand.print()
 	fmt.Println("---")
 
@@ -39,12 +37,12 @@ func main() {
 	fmt.Println("---")
 
 	// Save the deck to file
-	playing_deck.saveToFile("datasave_current_deck.tmp")
+	playing_deck.saveToFile("datasave_current_deck.sav")
 	playing_deck = newDeck()
 
 	// Testing reading from the saved file
 	fmt.Println("--- Reading from saved file --- ")
-	playing_deck = newDeckFromFile("datasave_current_deck.tmp")
+	playing_deck = newDeckFromFile("datasave_current_deck.sav")
 	fmt.Println(playing_deck.toString())
 
 	// Testing Shuffling
@@ -56,7 +54,17 @@ func main() {
 	fmt.Println("After Shuffling The Deck:")
 	playing_deck.shuffle()
 	fmt.Println(playing_deck.toString())
+
 }
 
-// > go run main.go deck.go
-// > go build main.go deck.go && ./main.exe
+// FOR WINDOWS:
+// 	To run:					go run 02-Cards\src\main.go 02-Cards\src\deck.go
+// 	To compile:				go build -o 02-Cards\bin\program.exe 02-Cards\src\main.go 02-Cards\src\deck.go
+// 	To run after compile:	.\02-Cards\bin\program.exe
+//	Compile + Run:			go build -o 02-Cards\bin\program.exe 02-Cards\src\main.go 02-Cards\src\deck.go && .\02-Cards\bin\program.exe
+
+// FOR LINUX:
+// 	To run:					go run 02-Cards/src/main.go 02-Cards/src/deck.go
+// 	To compile:				go build -o 02-Cards/bin/program 02-Cards/src/main.go 02-Cards/src/deck.go
+// 	To run after compile:	./02-Cards/bin/program
+//	Compile + Run:			go build -o 02-Cards/bin/program 02-Cards/src/main.go 02-Cards/src/deck.go && ./02-Cards/bin/program

@@ -1,0 +1,62 @@
+package main
+
+import (
+	"fmt"
+)
+
+// Rules of Interfaces
+// *******************
+//	- Concrete Type: We can create a value from directly (e.g. engishBot, spanishBot, int, string...)
+//	- Interface Type: We cannot create values directly from an Interface (e.g. IBot)
+//		- Interface Types are only used to define arguments taken by functions
+//
+// 	- Interfaces are NOT Generics
+//		- Go does not have support for Generic Types
+//	- Interfaces are IMPLICIT
+//		- As long as the types follow the contract functions, they are a type of the interface
+//		- We do not use IMPLEMENTS keyword
+//	- Interfaces are a CONTRACT to help us manage types
+//		- But we stil need to know ho to implement well the logic
+//		- If we don't, GIGO (Garbage-In, Garbage-Out)
+
+type IBot interface {
+	getGreeting() string // or return (string, error)
+}
+type englishBot struct{}
+type spanishBot struct{}
+
+// Functions
+// *********
+
+func main() {
+
+	eb := englishBot{}
+	sb := spanishBot{}
+
+	printGreeting(eb)
+	printGreeting(sb)
+
+}
+
+// Receivers
+// *********
+
+func (englishBot) getGreeting() string {
+	// Imagine some logic that is custom to englishBot
+	return "Hello!"
+}
+
+func (spanishBot) getGreeting() string {
+	// Imagine some logic that is custom to spanishBot
+	return "Hola!"
+}
+
+// Interface Functions
+// *******************
+
+func printGreeting(b IBot) {
+	fmt.Println(b.getGreeting())
+}
+
+// > go run main.go
+// > go build main.go && ./main.exe

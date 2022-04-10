@@ -1,0 +1,72 @@
+package main
+
+import (
+	"fmt"
+)
+
+// Types
+// *****
+//	- Interfaces defines what functionalities a type should implement
+//	- It is a contract with a type
+//	- A type that wants to act as IBot must implement the functions defined here
+type IBot interface {
+	getGreeting() string
+}
+type englishBot struct{}
+type spanishBot struct{}
+
+// Functions
+// *********
+
+func main() {
+
+	eb := englishBot{}
+	sb := spanishBot{}
+
+	printGreeting(eb)
+	printGreeting(sb)
+
+}
+
+// Interfaces Basics
+// *****************
+//	- Interfaces are keys features in Go
+//	- Every value has a type
+//	- Every function has to specify the types of its arguments
+//	- Should every function accomodate different types even if the logic in it is identical?
+
+// These following functions would probably be different for each bot
+// NOTE: For receiver, when the instance variable is not being used in the function, we can remove it
+
+func (englishBot) getGreeting() string {
+	// Imagine some logic that is custom to englishBot
+	return "Hello!"
+}
+
+func (spanishBot) getGreeting() string {
+	// Imagine some logic that is custom to spanishBot
+	return "Hola!"
+}
+
+// 	However, the functionalities in the following functions are not specifically tied to an bot type
+//	We could generalize them with any other types of "things" that are similar
+//	- In part, this is what Interfaces resolve
+
+// func printGreeting(eb englishBot) {
+// 	fmt.Println(eb.getGreeting())
+// }
+
+// func printGreeting(sb spanishhBot) {
+// 	fmt.Println(sb.getGreeting())
+// }
+
+// Now, we are refactoring to make use of interface
+//	- Interface is like a contract with a type
+//	- As long as a type implements the same functions defined by the interface, they are good to go
+
+func printGreeting(b IBot) {
+	fmt.Println(b.getGreeting())
+}
+
+// > go run main.go
+// > go build main.go && ./main.exe
