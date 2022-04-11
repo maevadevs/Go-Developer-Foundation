@@ -37,12 +37,12 @@ func main() {
 	fmt.Println("---")
 
 	// Save the deck to file
-	playing_deck.saveToFile("datasave_current_deck.sav")
+	playing_deck.saveToFile("sav_files/datasave_current_deck.sav")
 	playing_deck = newDeck()
 
 	// Testing reading from the saved file
 	fmt.Println("--- Reading from saved file --- ")
-	playing_deck = newDeckFromFile("datasave_current_deck.sav")
+	playing_deck = newDeckFromFile("sav_files/datasave_current_deck.sav")
 	fmt.Println(playing_deck.toString())
 
 	// Testing Shuffling
@@ -57,14 +57,13 @@ func main() {
 
 }
 
-// FOR WINDOWS:
-// 	To run:					go run 02-Cards\src\main.go 02-Cards\src\deck.go
-// 	To compile:				go build -o 02-Cards\bin\program.exe 02-Cards\src\main.go 02-Cards\src\deck.go
-// 	To run after compile:	.\02-Cards\bin\program.exe
-//	Compile + Run:			go build -o 02-Cards\bin\program.exe 02-Cards\src\main.go 02-Cards\src\deck.go && .\02-Cards\bin\program.exe
+// FOR WINDOWS: FROM PROJECT FOLDER
+// 	To run:					go run src\main.go src\deck.go
+// 	To compile:				go build -o bin\program.exe src\main.go src\deck.go
+// 	To run after compile:	.\bin\program.exe
 
-// FOR LINUX:
-// 	To run:					go run 02-Cards/src/main.go 02-Cards/src/deck.go
-// 	To compile:				go build -o 02-Cards/bin/program 02-Cards/src/main.go 02-Cards/src/deck.go
-// 	To run after compile:	./02-Cards/bin/program
-//	Compile + Run:			go build -o 02-Cards/bin/program 02-Cards/src/main.go 02-Cards/src/deck.go && ./02-Cards/bin/program
+// FOR LINUX: FROM PROJECT FOLDER
+// 	To run:					go run src/main.go src/deck.go
+// 	To compile:				go build -o bin/program src/main.go src/deck.go
+// 	To run after compile:	./bin/program
+//	Compile + Run:			go build -o bin/program src/main.go src/deck.go && ./bin/program
