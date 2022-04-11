@@ -22,14 +22,13 @@ func main() {
 
 }
 
-// FOR WINDOWS:
-// 	To run:					go run 01-Hello-World\src\main.go
-// 	To compile:				go build -o 01-Hello-World\bin\program.exe 01-Hello-World\src\main.go
-// 	To run after compile:	.\01-Hello-World\bin\program.exe
-//	Compile + Run:			go build -o 01-Hello-World\bin\program.exe 01-Hello-World\src\main.go && .\01-Hello-World\bin\program.exe
+// FOR WINDOWS: FROM PROJECT FOLDER
+// 	To run:					go run src\main.go
+// 	To compile:				go build -o bin\program.exe src\main.go
+// 	To run after compile:	.\bin\program.exe
 
-// FOR LINUX:
-// 	To run:					go run 01-Hello-World/src/main.go
-// 	To compile:				go build -o 01-Hello-World/bin/program 01-Hello-World/src/main.go
-// 	To run after compile:	./01-Hello-World/bin/program
-//	Compile + Run:			go build -o 01-Hello-World/bin/program 01-Hello-World/src/main.go && ./01-Hello-World/bin/program
+// FOR LINUX: FROM PROJECT FOLDER
+// 	To run:					go run src/main.go
+// 	To compile:				go build -o bin/program src/main.go
+// 	To run after compile:	./bin/program
+//	Compile + Run:			go build -o bin/program src/main.go && ./bin/program
