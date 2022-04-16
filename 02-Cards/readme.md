@@ -26,7 +26,7 @@ var my_card string = "Ace of Spade"
 
 - `var`
   - Keyword to create a new variable
-  - Every declared variables must be used
+  - *Every declared variables must be used*
 - `my_card`
   - Name of the variable
 - `string`
@@ -39,12 +39,13 @@ var my_card string = "Ace of Spade"
   - `int`
   - `float64`
 
-- We can also declare only then assigned later
+- We can also declare only, then assigned a value later
   - When using this, Go assign the *null*-equivalent default value of the type to the declared variable
 
 ```go
 var some_card string        // Declare variable: default value = ""
 var some_int int            // Declare variable: default value = 0
+
 some_card = "5 of Heart"    // Assign value to variable
 some_int = 1001             // Assign value to variable
 ```
@@ -52,7 +53,7 @@ some_int = 1001             // Assign value to variable
 ### Shortcut variable declaration format
 
 - Go can also automatically infer the variable type from the assigned value
-  - We use `:=` and ommit the `var` keyword
+  - We use `:=` and omit the `var` keyword
   - **Only use `:=` when declaring a new variable *WITH* initialization *AND* type inference**
 
 ```go
@@ -64,9 +65,9 @@ some_int := 1001
 ### Re-assigning values to variables
 
 - Obviously, we can re-assign value to any variable
-- **However, make sure to use `=` intead of `:=` when re-assigning**
-  - `:=` is only for initializing with type inference
-  - `=` is for successive re-assignments
+- **However, make sure to use `=` instead of `:=` when re-assigning**
+  - `:=` is only used for initializing with type inference
+  - `=` is used for all successive re-assignments
 - **Make sure that the type of the re-assigned value matches the declared type of the variable**
 
 ```go
@@ -92,7 +93,9 @@ some_card = "10 of Diamond"
 ```go
 // func <name>(<args?>) <returnType?> { <body> ... <return?> }
 func newCard() string {
+
     return "5 of Diamonds"
+    
 }
 ```
 
@@ -117,17 +120,14 @@ func newCard() string {
 ```go
 // Package
 // *******
-
 package main
 
 // Imports
 // *******
-
 import "fmt"
 
 // Helper Functions
 // ****************
-
 func newCard() string {
     return "5 of Diamonds"
 }
@@ -138,7 +138,6 @@ func getAge() int {
 
 // Main Function
 // *************
-
 func main() {
 
     // We are calling a function and assigning its return value to the variable
@@ -169,6 +168,7 @@ func deal(d deck, hand_size int) (deck, deck) {
 
     // Return the "hand" and the "remaining deck" as a tuple
     return hand, remaining_deck
+
 }
 ```
 
@@ -282,7 +282,6 @@ for _, fruit := range all_fruits_but_last {
 - If we skip the `up_to_index`, we grab everything after the `start_index`
 
 ```go
-
 // Skipping the up_to_index
 all_fruits_but_first := fruits[1:]
 
@@ -338,7 +337,7 @@ for index, card := range cards {
 - `index, card`
   - Variables used within the `for`-loop block
   - **Every declared variable must be used**
-  - If either `index` or `value` is not going to be used in the loop body, replace with `_`
+  - If either `index` or `card` is not going to be used in the loop body, replace with `_`
 
 ```go
 cards := []string{
@@ -348,7 +347,7 @@ cards := []string{
 }
 
 fmt.Println("Using for-loop with range:")
-for _index_, card := range cards {
+for index, card := range cards {
     fmt.Println(index, "--", card)
 }
 
@@ -360,7 +359,7 @@ for _, card := range cards {
 
 #### Iteration over infinite sets
 
-- In Go, there is no `while` keyword
+- In Go, there is no `while` keyword for doing iterations over infinite sets
 - Instead, `for` can also be used in a `while`-like style for iterating over infinite sets of elements
 
 ```go
@@ -371,6 +370,7 @@ cards := []string{
 }
 
 fmt.Println("Using for-loop in a While-like style:")
+
 i := 0
 for i < len(cards) {
     fmt.Println("--", cards[i])
@@ -411,12 +411,14 @@ cards := []string{
 }
 
 fmt.Println("Using for-loop in an infinite-loop with break (Do-While-like) style:")
+
 j := 0
 for {
     // Do something at least once
     fmt.Println("--", cards[j])
     j += 1
-    // Then check the condition: Make sure it is reachable to avoid an infinite loop
+    // Then check the condition: 
+    // Make sure it is reachable to avoid an infinite loop
     if j >= len(cards) {
         break
     }
@@ -429,9 +431,10 @@ for {
 
 - **Go is not an *Object-Oriented* language**
   - It does not have any comprehension of *Object* and *Class* types
-- Instead, we use *Types*
+- Instead, we use *Types* and *Receivers*
   - Abstracted primitive types with additional functionalities
-  - We could think of *Type* as a very simplified version of an *Class*
+  - We want to *extend* a base type and add some extra functionalities to it
+  - We could think of *Type* as a very simplified version of a *Class*
 
 ```go
 // Declaring a type: type <typeName> <equivalentType>
@@ -481,6 +484,7 @@ func newDeck() deck {
 ### Receiver function
 
 - Receiver functions are like *Methods* that we attach to *Types*
+- Receiver functions are called like *Methods* on type instances
 - When attaching to a type, we typically use the initial of the type as the `this` or `self` keywords within the function to refer to the *Instance* of the type
   - This is not a mandate but a generally-accepted guideline
   - Example: `deck` -> `d`
@@ -515,7 +519,7 @@ func (deck d) deal(hand_size int) (deck, deck) {
 }
 ```
 
-- When using a receiver function, we generally use it as *Method* on the *Instance* of the type
+- When using a receiver function, we generally use it like a *Method* on the *Instance* of the type
 
 ### Using types
 
@@ -575,7 +579,7 @@ fmt.Println(greeting_bytes)
     - For now, we will just ignore it
 
 ```go
-// Writing text to file and ignoring returned erro type
+// Writing text to file and ignoring returned error type
 _ = ioutil.WriteFile(
     "datasave_hello_world.tmp", 
     greeting_byte, 
@@ -636,7 +640,7 @@ fmt.Println(greeting_byte)
 
 - Go does not have a very strong unit test framework
 - Very small set of functions for testing
-  - Not similar to using the Testing Framework
+  - Not similar to using typical Testing Framework
   - We write Go codes to test Go codes
 - Create a new file ending in `_test.go`
   - E.g. For testing `deck.go` --> `deck_test.go`
@@ -645,7 +649,7 @@ fmt.Println(greeting_byte)
   - `t` is the test-handler
     - If something is wrong, we use `t` to notify with an error message
     - `t.Errorf()` - Allows to return an error with string formatting
-- To run all the tests in the package: `go test`
+- To run all the tests in the package: `> go test`
 
 ```go
 // In deck_test.go

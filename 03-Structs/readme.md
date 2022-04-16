@@ -6,25 +6,25 @@
 - A collection of properties that are related together
 - More flexible properties than just a single string type
 - Similar to Python Dictionary, but not an *Object*
-  - The type of each field inside the struct can be different
+  - **The type of each field inside the struct can be different**
 - Can be used to represent complex data structures
 - We can embbed one struct inside of another struct
 
 ```go
 // Declaring new structs
 type contactInfo struct {
-    email    string
+    email string
     zip_code int
 }
 
 type person struct {
     first_name string
-    last_name  string
-    contact    contactInfo
+    last_name string
+    contact contactInfo
 }
 ```
 
-- Now, we can start making use of the structs in the `main()` function
+- Now, we can start making use of the struct in the `main()` function
 - The order of the fields can be used when defining a struct instance
   - However, this is not a recommended approach
 
@@ -141,7 +141,7 @@ func main() {
   - With the way `jim.updateName()` is defined, the *value* is copied and stored in a new location in memory
   - However, the variable `jim` is still *pointing* to the old *value*
   - We are not updating the original *struct*
-  - Instead, we are copying the newly assigned *value* into a different location is memory
+  - Instead, we are copying the newly assigned *value* into a different location in memory
 - To solve this issue, we need to use *Pointers* to force Go to *pass-by-reference*
   - We use the `&` sign to create a reference
   - `*var` - Operator to access the value that exist at the memory address (pointer)

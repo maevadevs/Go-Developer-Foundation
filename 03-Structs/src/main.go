@@ -1,16 +1,13 @@
 // Package
 // *******
-
 package main
 
 // Import
 // ******
-
 import "fmt"
 
 // Structs
 // *******
-
 type contactInfo struct {
 	email    string
 	zip_code int
@@ -24,7 +21,6 @@ type person struct {
 
 // Receiver Functions
 // ******************
-
 func (p person) print() {
 	fmt.Printf("%+v\n", p)
 }
@@ -32,14 +28,12 @@ func (p person) print() {
 // Using pointer as receiver allows us to pass-by-reference
 //	*var - Operator to access the value that exist at the memory address (pointer)
 //	*person - A type of Pointer that point to a person type
-
 func (ptr *person) updateName(new_first_name string) {
 	(*ptr).first_name = new_first_name
 }
 
 // Helper Functions
 // ****************
-
 func updateSlice(s []string) {
 	s[0] = "Bye"
 }
@@ -50,7 +44,6 @@ func updateArray(arr [4]string) {
 
 // main()
 // ******
-
 func main() {
 
 	jim := person{
@@ -82,6 +75,7 @@ func main() {
 
 	fmt.Println(mySlice)
 	fmt.Println(myArray)
+
 }
 
 // FOR WINDOWS: FROM PROJECT FOLDER

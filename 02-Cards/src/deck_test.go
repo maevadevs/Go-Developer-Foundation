@@ -4,12 +4,10 @@
 
 // Package
 // *******
-
 package main
 
 // Imports
 // *******
-
 import (
 	"os"
 	"testing"
@@ -20,7 +18,6 @@ import (
 //	- A deck should be created with x number of cards
 //	- The 1st card should be an "A of Spade"
 //	- The last card should be a "K of Club"
-
 func Test_NewDeck(t *testing.T) {
 
 	// Deck Instance to test on
@@ -28,7 +25,6 @@ func Test_NewDeck(t *testing.T) {
 
 	// TEST CASE 1: A deck should be created with x number of cards
 	// ------------------------------------------------------------
-
 	// Create a new deck
 	d = newDeck()
 
@@ -40,7 +36,6 @@ func Test_NewDeck(t *testing.T) {
 
 	// TEST CASE 2: The 1st card should be an "A of Spade"
 	// ---------------------------------------------------
-
 	// Create a new deck
 	d = newDeck()
 
@@ -52,7 +47,6 @@ func Test_NewDeck(t *testing.T) {
 
 	// TEST CASE 3: The last card should be a "K of Club"
 	// --------------------------------------------------
-
 	// Create a new deck
 	d = newDeck()
 
@@ -68,7 +62,6 @@ func Test_NewDeck(t *testing.T) {
 // -------------------------------------------------
 // When testing with files, we have to make sure that we cleanup the files we test with
 // Go does not automatically take care of test files
-
 func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
 
 	// Delete any file _decktesting.tmp from past tests if any

@@ -4,12 +4,10 @@
 
 // Package
 // *******
-
 package main
 
 // Imports
 // *******
-
 import (
 	"fmt"
 	"io/ioutil"
@@ -21,15 +19,12 @@ import (
 // Type Declaration
 // ****************
 // A Deck type is an abstraction of a slice of string with additional functionalities
-
 type deck []string
 
 // Initializer Function (Type Constructor)
 // ***************************************
-
 // newDeck()
 // Initialize and create a new deck of cards
-
 func newDeck() deck {
 
 	// A deck is just an abstraction of a slice of strings
@@ -56,10 +51,8 @@ func newDeck() deck {
 
 // Receiver Functions (Type Methods)
 // *********************************
-
 // deck.print()
 // Receiver Functions for the deck type to print the value representation of a deck
-
 func (d deck) print() {
 
 	for _, card := range d {
@@ -70,7 +63,6 @@ func (d deck) print() {
 
 // deck.Deal()
 // Receiver Function to deal cards from the deck
-
 func (d deck) deal(hand_size int) (deck, deck) {
 
 	// Split the original deck into 2 using the hand_size
@@ -84,7 +76,6 @@ func (d deck) deal(hand_size int) (deck, deck) {
 
 // deck.ToString()
 // Receiver Function to convert a deck into its string representation
-
 func (d deck) toString() string {
 
 	// deck -> []string
@@ -103,7 +94,6 @@ func (d deck) toString() string {
 // Receiver Function that shuffle the deck
 // Go does not have a standard way to randomize order in a slice
 // So we will put our custom logic instead: With Time-Based Random Number Generator
-
 func (d deck) shuffle() {
 
 	// Time-Based Random Number Generator
@@ -133,7 +123,6 @@ func (d deck) shuffle() {
 // Using WriteFile(filename string, data []byte, permissions os.FileMode)
 //	- Returns an error type if there is any
 // 	- deck -> []string -> string -> []byte
-
 func (d deck) saveToFile(filename string) error {
 
 	// First, convert the deck to string: deck -> []string -> string
@@ -149,10 +138,8 @@ func (d deck) saveToFile(filename string) error {
 
 // Regular Helper Functions
 // ************************
-
 // newDeckFromFile()
 // Function to create a new deck from an existing save file
-
 func newDeckFromFile(filename string) deck {
 
 	// Read from the file
@@ -173,11 +160,11 @@ func newDeckFromFile(filename string) deck {
 	}
 
 	// If here, there was no errors in reading the file
-	//	Convert deck_bytes back to an actual deck: []byte -> string -> []string -> deck
+	// Convert deck_bytes back to an actual deck: []byte -> string -> []string -> deck
 	deck_str := string(deck_bytes)
 
 	// We get a psv (pipe-separated values)
-	//	We can use strings.Split(s string, sep string) to parse this into []string
+	// We can use strings.Split(s string, sep string) to parse this into []string
 	deck_strs := strings.Split(deck_str, "|")
 
 	// We can use the slice of strings to convert into an actual deck

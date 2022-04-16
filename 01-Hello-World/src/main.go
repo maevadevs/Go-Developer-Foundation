@@ -1,16 +1,13 @@
 // Package
 // *******
-
 package main
 
-// Import
-// ******
-
+// Imports
+// *******
 import "fmt"
 
-// Function
-// ********
-
+// Functions
+// *********
 func main() {
 
 	// Print to the screen
