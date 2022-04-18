@@ -1,0 +1,69 @@
+// Package
+// *******
+package main
+
+// Imports
+// *******
+import (
+	"fmt"
+)
+
+// Interfaces
+// **********
+type shape interface {
+	getArea() float64
+}
+
+// Structs
+// *******
+type triangle struct {
+	height float64
+	base   float64
+}
+type square struct {
+	sideLength float64
+}
+
+// Concrete Types Receiver Functions
+// *********************************
+func (t triangle) getArea() float64 {
+	return 0.5 * t.base * t.height
+}
+
+func (s square) getArea() float64 {
+	return s.sideLength * s.sideLength
+}
+
+// Helper Functions
+// ****************
+func printArea(s shape) {
+	fmt.Println("The area of the shape is", s.getArea())
+}
+
+// Main Functions
+// **************
+func main() {
+	// Initialize type instances
+	my_triangle := triangle{
+		height: 30,
+		base:   10,
+	}
+	my_square := square{
+		sideLength: 15,
+	}
+	// Print their areas
+	printArea(my_triangle)
+	printArea(my_square)
+}
+
+// FOR WINDOWS:
+//	To run:					go run 06-Assignment\src\main.go
+//	To compile:				go build -o 06-Assignment\bin\shapes.exe 06-Assignment\src\main.go
+//	To run after compile:	.\06-Assignment\bin\shapes.exe
+//	Compile + Run:			go build -o 06-Assignment\bin\shapes.exe 06-Assignment\src\main.go && .\06-Assignment\bin\shapes.exe
+
+// FOR LINUX:
+//	To run:					go run 06-Assignment/src/main.go
+//	To compile:				go build -o 06-Assignment/bin/shapes 06-Assignment/src/main.go
+//	To run after compile:	./06-Assignment/bin/shapes
+//	Compile + Run:			go build -o 06-Assignment/bin/shapes 06-Assignment/src/main.go && ./06-Assignment/bin/shapes

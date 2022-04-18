@@ -30,7 +30,6 @@ type person struct {
 
 ```go
 func main() {
-
     // Creating a value of type person
     // Using field order: This is not the recommended approach
     alex := person{
@@ -42,7 +41,6 @@ func main() {
         },
     }
     fmt.Println(alex)
-
 }
 ```
 
@@ -51,7 +49,6 @@ func main() {
 
 ```go
 func main() {
-
     // Creating a value of type person
     // Using named fields: This is the recommended approach
     maria := person{
@@ -63,7 +60,6 @@ func main() {
         },
     }
     fmt.Println(maria)
-
 }
 ```
 
@@ -76,7 +72,6 @@ func main() {
 
 ```go
 func main() {
-
     // Declare variable: Default to null-value
     var julie person
 
@@ -89,7 +84,6 @@ func main() {
 
     // Check again
     fmt.Printf("%+v\n", julie)
-
 }
 ```
 
@@ -109,7 +103,6 @@ func (p person) updateName(new_first_name string) {
 }
 
 func main() {
-
     // Defining a new person variable
     jim := person{
         first_name: "Jim",
@@ -126,7 +119,6 @@ func main() {
     jim.print()
 
     // Why did it not update? --> Pointers
-
 }
 ```
 
@@ -160,7 +152,6 @@ func (ptr *person) updateNamePointer(new_first_name string) {
 
 ```go
 func main() {
-
     jim := person{
         first_name: "Jim",
         last_name:  "Patterson",
@@ -178,7 +169,6 @@ func main() {
 
     // Checking jim after calling a receiver function
     jim.print()
-
 }
 ```
 
@@ -219,7 +209,6 @@ jim.print()
 
 ```go
 funct main() {
-
     mySlice := []string{"Hi", "there", "how", "are", "you"}
     myArray := [4]string{"This", "is", "an", "Array"}
 
@@ -234,7 +223,6 @@ funct main() {
 
     fmt.Println(mySlice)
     fmt.Println(myArray)
-
 }
 
 // Helper Functions

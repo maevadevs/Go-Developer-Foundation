@@ -93,9 +93,7 @@ some_card = "10 of Diamond"
 ```go
 // func <name>(<args?>) <returnType?> { <body> ... <return?> }
 func newCard() string {
-
     return "5 of Diamonds"
-    
 }
 ```
 
@@ -139,7 +137,6 @@ func getAge() int {
 // Main Function
 // *************
 func main() {
-
     // We are calling a function and assigning its return value to the variable
     // When calling a function, the return type of the function becomes the type of the variable it is assigned to
     card := newCard()   // string
@@ -148,7 +145,6 @@ func main() {
     // Making use of the variables
     fmt.Println(card)
     fmt.Println(age)
-
 }
 ```
 
@@ -161,14 +157,12 @@ func main() {
 ```go
 // A function that return a tuple-like (deck, deck)
 func deal(d deck, hand_size int) (deck, deck) {
-
     // Split the original deck into 2 using the hand_size
     hand := d[:hand_size]
     remaining_deck := d[hand_size:]
 
     // Return the "hand" and the "remaining deck" as a tuple
     return hand, remaining_deck
-
 }
 ```
 
@@ -455,7 +449,6 @@ type deck []string
 
 ```go
 func newDeck() deck {
-
     // A deck is just an abstraction of a slice of strings
     cards := deck{}
 
@@ -477,7 +470,6 @@ func newDeck() deck {
 
     // Return the new deck
     return cards
-
 }
 ```
 
@@ -508,14 +500,12 @@ func (<t> <type>) <funcName>(<args>) <returnType> {
 // Declaring a Receiver Function: Attaching to a deck type
 // Returns a tuple-like
 func (deck d) deal(hand_size int) (deck, deck) {
-
     // Split the original deck into 2 using the hand_size
     hand := d[:hand_size]
     remaining_deck := d[hand_size:]
 
     // Return the "hand" and the "remaining deck" as a tuple
     return hand, remaining_deck
-
 }
 ```
 
@@ -529,7 +519,6 @@ func (deck d) deal(hand_size int) (deck, deck) {
 
 ```go
 func main() {
-
     // Declaring and Initializing variable deck type
     // playing_deck is an abstraction of a slice of strings
     playing_deck := newDeck()
@@ -539,7 +528,6 @@ func main() {
 
     // Using Receiver function: Print the deck
     hand.print()
-
 }
 ```
 
@@ -655,7 +643,6 @@ fmt.Println(greeting_byte)
 // In deck_test.go
 
 func Test_NewDeck(t *testing.T) {
-
     // CASE 1: A deck should be created with x number of cards
     // -------------------------------------------------------
 
@@ -668,7 +655,6 @@ func Test_NewDeck(t *testing.T) {
         // Errorf() is a formatted string: We can use % for placeholders
         t.Errorf("Expected deck length of 52. Got %v", len(d))
     }
-
 }
 ```
 
@@ -679,7 +665,6 @@ func Test_NewDeck(t *testing.T) {
 // In deck_test.go
 
 func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
-
     // Delete any file _decktesting.tmp from past tests if any
     os.Remove("_decktesting.tmp")
 
@@ -701,7 +686,6 @@ func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
 
     // Finally, clean up after ourselves
     os.Remove("_decktesting.tmp")
-
 }
 ```
 

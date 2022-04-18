@@ -1,0 +1,61 @@
+// Package
+// *******
+package main
+
+// Imports
+// *******
+import (
+	"fmt"
+)
+
+// Interfaces and Types
+// ********************
+type IBot interface {
+	getGreeting() string
+}
+type englishBot struct{}
+type spanishBot struct{}
+
+// Receiver Functions
+// ******************
+func (englishBot) getGreeting() string {
+	// Imagine some logic that is custom to englishBot
+	// Custom implementation for englishBot
+	return "Hello!"
+}
+
+func (spanishBot) getGreeting() string {
+	// Imagine some logic that is custom to spanishBot
+	// Custom implementation for spanishBot
+	return "Hola!"
+}
+
+// Main Function
+// *************
+func main() {
+	// Define bot variables
+	eb := englishBot{}
+	sb := spanishBot{}
+
+	// Call print function for each bot types
+	// As long as each bot implements the specifications of the interface, we are good to go
+	printGreeting(eb)
+	printGreeting(sb)
+}
+
+// Helper Functions
+// ****************
+func printGreeting(Ib IBot) {
+	fmt.Println(Ib.getGreeting())
+}
+
+// FOR WINDOWS: FROM PROJECT FOLDER
+// 	To run:					go run src\main.go
+// 	To compile:				go build -o bin\program.exe src\main.go
+// 	To run after compile:	.\bin\program.exe
+
+// FOR LINUX: FROM PROJECT FOLDER
+// 	To run:					go run src/main.go
+// 	To compile:				go build -o bin/program src/main.go
+// 	To run after compile:	./bin/program
+//	Compile + Run:			go build -o bin/program src/main.go && ./bin/program

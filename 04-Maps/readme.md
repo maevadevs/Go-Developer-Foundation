@@ -78,11 +78,9 @@ type hashmap map[string]string
 
 ```go
 func (c hashmap) print() {
-
     for color, hex := range c {
         fmt.Printf("Colors{%s: %s}\n", color, hex)
     }
-    
 }
 ```
 
