@@ -8,3 +8,4 @@ This is a developer's foundation for working with Go
 - [Maps](./04-Maps/)
 - [Interfaces](./05-Interfaces/)
 - [Assignments](./06-Assignment/)
+- [Concurrency](./07-Concurrency/)
