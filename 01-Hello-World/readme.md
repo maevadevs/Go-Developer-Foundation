@@ -80,3 +80,24 @@ Go Commands | Action
 `go install`|Compiles and *installs* a package
 `go get`|Download the raw source code of someone else's package
 `go test`|Runs any tests associated with the current projects
+
+## Go Modules
+
+```txt
+Module > Package > Source Files
+```
+
+- Modules contain Packages
+- Packages contain Source files
+- Initialize a Module folder with:
+
+```sh
+cd path/to/module/folder
+go mod init unique/path/for/source
+```
+
+- This creates a `go.mod` file inside of the module folder
+  - Contains the unique path for the module
+  - Contains the version of go used for the module
+- Typically, the path is on Github but it does not have to
+- It can be any path
