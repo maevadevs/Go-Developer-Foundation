@@ -1,12 +1,24 @@
 # Structs
 
-## Struct basics
+---
+
+- [Struct Basics](#struct-basics)
+- [Struct With Receiver Function](#struct-with-receiver-function)
+- [Pointers and Values](#pointers-and-values)
+  - [About Pointers](#about-pointers)
+  - [Pointer Gotchas](#pointer-gotchas)
+    - [List Of Data Structures That Are Passed BY REFERENCE (REFERENCE TYPES)](#list-of-data-structures-that-are-passed-by-reference-reference-types)
+    - [List Of Data Structures That Are Passed BY VALUE (VALUES TYPES)](#list-of-data-structures-that-are-passed-by-value-values-types)
+
+---
+
+## Struct Basics
 
 - A Data Structure used widely throughout Go
 - A collection of properties that are related together
 - More flexible properties than just a single string type
 - Similar to Python Dictionary, but not an *Object*
-  - **The type of each field inside the struct can be different**
+- **The type of each field inside the struct can be different**
 - Can be used to represent complex data structures
 - We can embbed one struct inside of another struct
 
@@ -33,18 +45,18 @@ func main() {
     // Creating a value of type person
     // Using field order: This is not the recommended approach
     alex := person{
-        "Alex",                     // first_name
-        "Anderson",                 // last_name
-        contactInfo{                // contact
+        "Alex", // first_name
+        "Anderson", // last_name
+        contactInfo{ // contact
             "alex@anderson.com",
-            12345,
-        },
+            12345
+        }
     }
     fmt.Println(alex)
 }
 ```
 
-- Instead of relying on the order of fields, use named fields
+- Instead of relying on the order of fields, use *named fields*
   - This is the recommended approach
 
 ```go
@@ -56,8 +68,8 @@ func main() {
         last_name:  "Anderson",
         contact: contactInfo{
             email:    "maria@anderson.com",
-            zip_code: 98765,
-        },
+            zip_code: 98765
+        }
     }
     fmt.Println(maria)
 }
@@ -87,9 +99,9 @@ func main() {
 }
 ```
 
-## Struct with receiver function
+## Struct With Receiver Function
 
-- Similr to *Types*, we can define receiver functions to be attached to structs as well
+- Similar to *Types*, we can define receiver functions to be attached to structs as well
 - **Note:** The code below has issue because of *Pointers*. We will review that below
 
 ```go
@@ -122,22 +134,24 @@ func main() {
 }
 ```
 
-## Pointers and values
+## Pointers and Values
 
 - Previously, we saw that calling `jim.updateName()` did not update the variable
 - Why did it not update the name to `"Jimmy"`?
   - Because of Pointers in Go
   - A struct variable is a pointer type
     - Points to a value stored in memory
-- By default, Go is a *pass-by-value* language
+- **By default, Go is a *pass-by-value* language**
   - With the way `jim.updateName()` is defined, the *value* is copied and stored in a new location in memory
   - However, the variable `jim` is still *pointing* to the old *value*
   - We are not updating the original *struct*
   - Instead, we are copying the newly assigned *value* into a different location in memory
-- To solve this issue, we need to use *Pointers* to force Go to *pass-by-reference*
+- To solve this issue, **we need to use *Pointers* to force Go to *pass-by-reference***
   - We use the `&` sign to create a reference
-  - `*var` - Operator to access the value that exist at the memory address (pointer)
-  - `*<type>` - A type of Pointer that point to a type
+  - `*var`
+    - Operator to access the value that exist at the memory address (pointer)
+  - `*<type>`
+    - A type of Pointer that point to a type
 
 ```go
 // Using pointer as receiver allows us to pass-by-reference
@@ -172,7 +186,7 @@ func main() {
 }
 ```
 
-- However, with Go, it is possible to substitute a pointer with its root variable
+- **However, with Go, it is possible to substitute a pointer with its root variable**
 - So the following still work, even if the receiver requires a pointer type
 
 ```go
@@ -181,19 +195,22 @@ jim.updateNamePointer("Big ol'Jim")
 jim.print()
 ```
 
-### About pointers
+### About Pointers
 
-- `&` - Operator to access the memory address that the variable is pointing to
+- `&`
+  - Operator to access the memory address that the variable is pointing to
 - Variable Pointer (Reference)
   - Points to a memory address
-  - Turn into equivalent Value using *
+  - Turn into equivalent Value using `*`
 - Variable Value
   - Contains the actual value stored in a memory address
-  - Turn into equivalent Pointer using &
-- `*var` - Operator to access the value that exist at the memory address (pointer)
-- `*<type>` - A Pointer type that point to a memory address whose value is the type
+  - Turn into equivalent Pointer using `&`
+- `*var`
+  - Operator to access the value that exist at the memory address (pointer)
+- `*<type>`
+  - A Pointer type that point to a memory address whose value is the type
 
-### Pointer gotchas
+### Pointer Gotchas
 
 - Go is typically a *Pass-By-Value* language
 - However, Slices are by default *passed-by-reference (Pointer)* for better performance
@@ -205,18 +222,18 @@ jim.print()
     - Length
   - An underlying Array
     - Contains the actual list of items
-- When we modifying the array, the Slice Data Structure gets moved around, but it is still pointing to the same underlying Array
+- When we modify the array, the Slice Data Structure gets moved around, but it is still pointing to the same underlying Array
 
 ```go
 funct main() {
     mySlice := []string{"Hi", "there", "how", "are", "you"}
     myArray := [4]string{"This", "is", "an", "Array"}
 
-    updateSlice(mySlice) 
+    updateSlice(mySlice)
     // Works because passed by reference
     // Updating on the argument = updating the same memory address
 
-    updateArray(myArray) 
+    updateArray(myArray)
     // Does not work because passed by value
     // Updating on the argument = updating a different copied value
     // Need to use pointer to update the same variable
@@ -235,7 +252,7 @@ func updateArray(arr [4]string) {
 }
 ```
 
-#### List of Data Structures that are passed BY REFERENCE (REFERENCE TYPES)
+#### List Of Data Structures That Are Passed BY REFERENCE (REFERENCE TYPES)
 
 No need to use pointers with these
 
@@ -245,7 +262,7 @@ No need to use pointers with these
 - Pointers
 - Functions
 
-#### List of Data Structures that are passed BY VALUE (VALUES TYPES)
+#### List Of Data Structures That Are Passed BY VALUE (VALUES TYPES)
 
 Use pointers to change the underlying values for these in functions
 
@@ -254,3 +271,4 @@ Use pointers to change the underlying values for these in functions
 - string
 - bool
 - struct
+- Arrays

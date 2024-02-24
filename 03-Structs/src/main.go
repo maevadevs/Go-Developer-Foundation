@@ -1,51 +1,17 @@
 // Package
 // *******
+
 package main
 
 // Import
 // ******
+
 import "fmt"
-
-// Structs
-// *******
-type contactInfo struct {
-	email    string
-	zip_code int
-}
-
-type person struct {
-	first_name string
-	last_name  string
-	contact    contactInfo
-}
-
-// Receiver Functions
-// ******************
-func (p person) print() {
-	fmt.Printf("%+v\n", p)
-}
-
-// Using pointer as receiver allows us to pass-by-reference
-//	*var - Operator to access the value that exist at the memory address (pointer)
-//	*person - A type of Pointer that point to a person type
-func (ptr *person) updateName(new_first_name string) {
-	(*ptr).first_name = new_first_name
-}
-
-// Helper Functions
-// ****************
-func updateSlice(s []string) {
-	s[0] = "Bye"
-}
-
-func updateArray(arr [4]string) {
-	arr[0] = "What"
-}
 
 // main()
 // ******
 func main() {
-
+	// Creating a new person
 	jim := person{
 		first_name: "Jim",
 		last_name:  "Patterson",
@@ -75,16 +41,13 @@ func main() {
 
 	fmt.Println(mySlice)
 	fmt.Println(myArray)
-
 }
 
 // FOR WINDOWS: FROM PROJECT FOLDER
-// 	To run:					go run src\main.go
-// 	To compile:				go build -o bin\program.exe src\main.go
+// 	To compile:				go build -o bin\program.exe .\src\
 // 	To run after compile:	.\bin\program.exe
 
 // FOR LINUX: FROM PROJECT FOLDER
-// 	To run:					go run src/main.go
-// 	To compile:				go build -o bin/program src/main.go
+// 	To compile:				go build -o bin/program ./src/
 // 	To run after compile:	./bin/program
-//	Compile + Run:			go build -o bin/program src/main.go && ./bin/program
+//	Compile + Run:			go build -o bin/program ./src/ && ./bin/program
