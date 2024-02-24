@@ -1,5 +1,7 @@
 # Go Developer Foundation
 
+---
+
 This is a developer's foundation for working with Go
 
 - [Hello World](./01-Hello-World/)

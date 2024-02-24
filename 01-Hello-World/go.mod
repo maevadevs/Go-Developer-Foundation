@@ -1,3 +1,3 @@
-module ralafi.com/go/hello-world
+module ralafi.com/go/learn-golang/hello-world
 
-go 1.18
+go 1.22

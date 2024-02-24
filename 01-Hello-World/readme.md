@@ -1,5 +1,17 @@
 # Hello World In Go
 
+---
+
+- [How is a Go file organized?](#how-is-a-go-file-organized)
+- [Package](#package)
+- [Import](#import)
+- [Function](#function)
+- [How do we run code in our project?](#how-do-we-run-code-in-our-project)
+- [Available Go commands](#available-go-commands)
+- [Go Modules](#go-modules)
+
+---
+
 ## How is a Go file organized?
 
 In practice, always the same typical pattern

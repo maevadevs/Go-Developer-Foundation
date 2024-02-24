@@ -9,14 +9,12 @@ import "fmt"
 // Functions
 // *********
 func main() {
-
 	// Print to the screen
 	fmt.Println("Hello World!")
 
 	// Wait before closing the console
 	fmt.Println("\nPress enter to exit...")
 	fmt.Scanln()
-
 }
 
 // FOR WINDOWS: FROM PROJECT FOLDER
