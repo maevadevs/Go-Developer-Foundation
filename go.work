@@ -1,0 +1,11 @@
+go 1.22.0
+
+use (
+	./01-Hello-World
+	./02-Cards
+    ./03-Structs
+    ./04-Maps
+    ./05-Interfaces
+    ./06-Assignment
+    ./07-Concurrency
+)
