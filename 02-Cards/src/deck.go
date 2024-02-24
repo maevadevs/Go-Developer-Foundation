@@ -10,23 +10,23 @@ package main
 // *******
 import (
 	"fmt"
-	"io/ioutil"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 )
 
 // Type Declaration
 // ****************
-// A Deck type is an abstraction of a slice of string with additional functionalities
+
+// A Deck type is an abstraction of a slice of string with additional functionalities.
 type deck []string
 
 // Initializer Function (Type Constructor)
 // ***************************************
-// newDeck()
-// Initialize and create a new deck of cards
-func newDeck() deck {
 
+// Initializes and returns a new deck of cards.
+func newDeck() deck {
 	// A deck is just an abstraction of a slice of strings
 	cards := deck{}
 
@@ -46,38 +46,33 @@ func newDeck() deck {
 
 	// Return the new deck
 	return cards
-
 }
 
 // Receiver Functions (Type Methods)
 // *********************************
-// deck.print()
-// Receiver Functions for the deck type to print the value representation of a deck
-func (d deck) print() {
 
+// deck.print()
+// Receiver Functions for the deck type to print the value representation of a deck.
+func (d deck) print() {
 	for _, card := range d {
 		fmt.Println(card)
 	}
-
 }
 
 // deck.Deal()
-// Receiver Function to deal cards from the deck
+// Receiver Function to deal cards from the deck.
 func (d deck) deal(hand_size int) (deck, deck) {
-
 	// Split the original deck into 2 using the hand_size
 	hand := d[:hand_size]
 	rem_deck := d[hand_size:]
 
 	// Return the "hand" and the "remaining deck"
 	return hand, rem_deck
-
 }
 
 // deck.ToString()
-// Receiver Function to convert a deck into its string representation
+// Receiver Function to convert a deck into its string representation.
 func (d deck) toString() string {
-
 	// deck -> []string
 	d_strs := []string(d)
 
@@ -87,15 +82,13 @@ func (d deck) toString() string {
 
 	// Finally return
 	return d_str
-
 }
 
 // deck.Shuffle()
-// Receiver Function that shuffle the deck
-// Go does not have a standard way to randomize order in a slice
-// So we will put our custom logic instead: With Time-Based Random Number Generator
+// Receiver Function that shuffle the deck.
+// Go does not have a standard way to randomize order in a slice.
+// So we use our custom logic instead: With Time-Based Random Number Generator.
 func (d deck) shuffle() {
-
 	// Time-Based Random Number Generator
 	source := rand.NewSource(time.Now().UnixNano())
 	rand_gen := rand.New(source)
@@ -115,16 +108,14 @@ func (d deck) shuffle() {
 		// Same syntax as Python Tuple for swapping
 		d[random_i], d[current_i] = d[current_i], d[random_i]
 	}
-
 }
 
 // deck.SaveToFile()
-// Receiver Function to save the deck to a file
-// Using WriteFile(filename string, data []byte, permissions os.FileMode)
-//	- Returns an error type if there is any
-// 	- deck -> []string -> string -> []byte
+// Receiver Function to save the deck to a file.
+// Using os.WriteFile().
+//   - Returns an error type if there is any
+//   - deck -> []string -> string -> []byte
 func (d deck) saveToFile(filename string) error {
-
 	// First, convert the deck to string: deck -> []string -> string
 	d_str := d.toString()
 
@@ -132,19 +123,17 @@ func (d deck) saveToFile(filename string) error {
 	d_bytes := []byte(d_str)
 
 	// Then write to file: Return its error if any
-	return ioutil.WriteFile(filename, d_bytes, 0666)
-
+	return os.WriteFile(filename, d_bytes, 0o666)
 }
 
-// Regular Helper Functions
-// ************************
+// Helper Functions
+// ****************
+
 // newDeckFromFile()
 // Function to create a new deck from an existing save file
 func newDeckFromFile(filename string) deck {
-
 	// Read from the file
-	deck_bytes, err := ioutil.ReadFile(filename)
-
+	deck_bytes, err := os.ReadFile(filename)
 	// Error Handling: Make sure that there is no errors before continuing
 	if err != nil {
 		// If here, we got an error in reading the file
@@ -169,5 +158,4 @@ func newDeckFromFile(filename string) deck {
 
 	// We can use the slice of strings to convert into an actual deck
 	return deck(deck_strs)
-
 }

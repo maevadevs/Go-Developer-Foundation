@@ -15,11 +15,10 @@ import (
 
 // Test Cases for newDeck()
 // ************************
-//	- A deck should be created with x number of cards
-//	- The 1st card should be an "A of Spade"
-//	- The last card should be a "K of Club"
+//   - A deck should be created with x number of cards
+//   - The 1st card should be an "A of Spade"
+//   - The last card should be a "K of Club"
 func Test_NewDeck(t *testing.T) {
-
 	// Deck Instance to test on
 	var d deck
 
@@ -55,7 +54,6 @@ func Test_NewDeck(t *testing.T) {
 		// If not, something is wrong --> Notify the test-handler t
 		t.Errorf("Expected last card to be 'K of Club'. Got %v", d[0])
 	}
-
 }
 
 // Test Cases for saveToFile() and newDeckFromFile()
@@ -63,7 +61,6 @@ func Test_NewDeck(t *testing.T) {
 // When testing with files, we have to make sure that we cleanup the files we test with
 // Go does not automatically take care of test files
 func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
-
 	// Delete any file _decktesting.tmp from past tests if any
 	os.Remove("_decktesting.tmp")
 
@@ -85,9 +82,8 @@ func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
 
 	// Finally, clean up after ourselves
 	os.Remove("_decktesting.tmp")
-
 }
 
-// To run the tests: > go test
+// To run the tests: > go test ./src
 // If go.mod is not found in the project dir: > go mod init ./m/v2
 // Check go env if needed: > go env

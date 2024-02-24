@@ -8,6 +8,7 @@ import "fmt"
 
 // Project Structure
 // *****************
+
 // 02-Cards
 //	|- main.go - Executable
 //	|- deck.go - Describes what a Deck type is and how it works
@@ -15,8 +16,8 @@ import "fmt"
 
 // Functions
 // *********
-func main() {
 
+func main() {
 	// Variables: deck type
 	playing_deck := newDeck() // deck is a slice of strings
 
@@ -33,7 +34,6 @@ func main() {
 
 	// Save the deck to file
 	playing_deck.saveToFile("sav/datasave_current_deck.sav")
-	playing_deck = newDeck()
 
 	// Testing reading from the saved file
 	fmt.Println("--- Reading from saved file --- ")
@@ -49,7 +49,6 @@ func main() {
 	fmt.Println("After Shuffling The Deck:")
 	playing_deck.shuffle()
 	fmt.Println(playing_deck.toString())
-
 }
 
 // FOR WINDOWS: FROM PROJECT FOLDER

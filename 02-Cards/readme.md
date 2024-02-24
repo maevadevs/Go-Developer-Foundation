@@ -1,23 +1,62 @@
 # Learning Go Through `Cards` Project
 
+---
+
+- [Variables](#variables)
+  - [Basic Variable Declaration Format](#basic-variable-declaration-format)
+  - [Shortcut Variable Declaration Format](#shortcut-variable-declaration-format)
+  - [Re-Assigning Values To Variables](#re-assigning-values-to-variables)
+- [Functions](#functions)
+  - [Basic Function Declaration Format](#basic-function-declaration-format)
+  - [Tuple-Like Assignement And Usage](#tuple-like-assignement-and-usage)
+- [Arrays \& Slices](#arrays--slices)
+  - [Array](#array)
+    - [Accessing Array Element](#accessing-array-element)
+  - [Slice](#slice)
+    - [Accessing Slice Element](#accessing-slice-element)
+    - [Selecting A Subset/Range Of Slice](#selecting-a-subsetrange-of-slice)
+    - [Appending New Elements To A Slice](#appending-new-elements-to-a-slice)
+  - [Iteration With `for`-Loops](#iteration-with-for-loops)
+    - [Iteration Over Finite Sets](#iteration-over-finite-sets)
+    - [Iteration Over Infinite Sets](#iteration-over-infinite-sets)
+    - [Iteration in C-style](#iteration-in-c-style)
+    - [`break`, `continue`, And `do-while`](#break-continue-and-do-while)
+- [Types \& Receiver functions](#types--receiver-functions)
+  - [Types](#types)
+  - [Initializing Function](#initializing-function)
+  - [Receiver Function](#receiver-function)
+    - [General Declaration Format Of A Receiver Function](#general-declaration-format-of-a-receiver-function)
+    - [Example Of A Receiver Function](#example-of-a-receiver-function)
+  - [Using Types](#using-types)
+- [Writing To File](#writing-to-file)
+- [Reading From File](#reading-from-file)
+  - [Error Handling](#error-handling)
+- [Unit Test](#unit-test)
+  - [How Do We Know What To Test?](#how-do-we-know-what-to-test)
+
+---
+
 In this review:
 
 - Variables
 - Functions
 - Arrays & Slices
-  - Iteration with `for`-loops
+- Iteration with `for`-loops
 - Types & Receiver Functions
 - Writing To File
 - Reading From File
-  - Error Handling
+- Error Handling
 - Unit Test
 
 ## Variables
 
 - Variables can be initialized outside of a function
-- But can only be assigned a value inside a function
+- _But can only be assigned a value inside a function_
+- Go uses the `var` keyword to declare variables
+- Variables are typed
+- **Every declared variables must be used**
 
-### Basic variable declaration format
+### Basic Variable Declaration Format
 
 ```go
 // var <name> <type> = <value>
@@ -38,23 +77,27 @@ var my_card string = "Ace of Spade"
   - `bool`
   - `int`
   - `float64`
-
 - We can also declare only, then assigned a value later
-  - When using this, Go assign the *null*-equivalent default value of the type to the declared variable
+  - When using this approach, Go assigns the _null_-equivalent default value of the type to the declared variable
 
 ```go
-var some_card string        // Declare variable: default value = ""
-var some_int int            // Declare variable: default value = 0
+// Declare variable:
+// default value = ""
+var some_card string
+// Declare variable:
+// default value = 0
+var some_int int
 
-some_card = "5 of Heart"    // Assign value to variable
-some_int = 1001             // Assign value to variable
+// Assign value to variable
+some_card = "5 of Heart"
+some_int = 1001
 ```
 
-### Shortcut variable declaration format
+### Shortcut Variable Declaration Format
 
-- Go can also automatically infer the variable type from the assigned value
+- Go can also automatically _infer_ the variable type from the assigned value
   - We use `:=` and omit the `var` keyword
-  - **Only use `:=` when declaring a new variable *WITH* initialization *AND* type inference**
+  - **Only use `:=` when declaring a new variable _WITH_ initialization _AND_ type inference**
 
 ```go
 // These are equivalent to the above declarations
@@ -62,7 +105,7 @@ some_card := "5 of Heart"
 some_int := 1001
 ```
 
-### Re-assigning values to variables
+### Re-Assigning Values To Variables
 
 - Obviously, we can re-assign value to any variable
 - **However, make sure to use `=` instead of `:=` when re-assigning**
@@ -71,24 +114,25 @@ some_int := 1001
 - **Make sure that the type of the re-assigned value matches the declared type of the variable**
 
 ```go
+// Reassigning a string variable
 some_card = "10 of Diamond"
 ```
 
 ## Functions
 
 - In Go, there are 2 principal types of functions:
-  - `main()` function
+  - **_`main()` Function_**
     - Only one per project
     - Contained in the `main.go` file
     - Declared with `package main`
     - This is the entry-point of execution of an executable
-  - Helper Functions
+  - **_Helper Functions_**
     - Can be multiple per project
     - Contained in differently-named `.go` files
     - Declared with different package names
     - These are re-usable blocks of logic
 
-### Basic function declaration format
+### Basic Function Declaration Format
 
 ```go
 // func <name>(<args?>) <returnType?> { <body> ... <return?> }
@@ -139,8 +183,8 @@ func getAge() int {
 func main() {
     // We are calling a function and assigning its return value to the variable
     // When calling a function, the return type of the function becomes the type of the variable it is assigned to
-    card := newCard()   // string
-    age := getAge()     // int
+    card := newCard() // string
+    age := getAge()   // int
 
     // Making use of the variables
     fmt.Println(card)
@@ -148,7 +192,7 @@ func main() {
 }
 ```
 
-### Tuple-like assignement and usage
+### Tuple-Like Assignement And Usage
 
 - We can return multiple values using tuple-like
   - On function, make sure to annotate the `returnType` using a tuple-like format
@@ -175,9 +219,9 @@ func deal(d deck, hand_size int) (deck, deck) {
 - Basic list of values
 - 0-based index
   - Same element access syntax as typical lists and arrays
-- Fixed-length
+- **Fixed-length**
 - Primitive Data Structure for lists
-- All of its elements must have the same type
+- **All of its elements must have the same type**
 - Useful when needing a static list of constants
 
 ```go
@@ -196,7 +240,7 @@ days := [7]string{
 }
 ```
 
-#### Accessing array element
+#### Accessing Array Element
 
 - Same element access syntax as typical lists and arrays
 
@@ -211,8 +255,8 @@ fmt.Println("Today is", today)
 - A bit advanced list of values
 - 0-based index
   - Same element access syntax as typical lists and arrays
-- Flexible-length: Can grow or shrink in length
-- All of its elements must have the same type
+- **Flexible-length: Can grow or shrink in length**
+- **All of its elements must have the same type**
 - Useful when needing to work on dynamic lists
 
 ```go
@@ -235,20 +279,20 @@ fruits := []string{
 }
 ```
 
-#### Accessing slice element
+#### Accessing Slice Element
 
 - Same element access syntax as typical lists and arrays
 
 ```go
 // Accessing a slice element
 fruit := fruits[-1]
-fmt.Println("Mys fruit is", fruit)
+fmt.Println("My fruit is", fruit)
 ```
 
-#### Selecting a subset/range of slice
+#### Selecting A Subset/Range Of Slice
 
 - This also follows the typical pattern of slices in other languages
-- Also, the *up-to-index* is *up-to-but-not-including*
+- Also, the _up-to-index_ is *up-to-but-not-including*
 
 ```go
 // slice[start_index: up_to_index]
@@ -297,23 +341,24 @@ for _, fruit := range all_fruits {
 }
 ```
 
-#### Appending new elements to a slice
+#### Appending New Elements To A Slice
 
 - Because Slice is dynamic in length, we can add new elements to it
-- Appending does not modify the existing value
-- Instead, it returns a new value with the modification added
-- Pure Function: We have to set it back to the original variable
+- **`append()` is a Pure Function**
+  - **We have to set it back to the original variable**
+  - **Appending does not modify the existing value**
+  - Instead, it returns a new value with the modification added
 
 ```go
-// Appending a new 
+// Appending a new
 cards = append(cards, "6 of Spades")
 ```
 
-### Iteration with `for`-loops
+### Iteration With `for`-Loops
 
 - We can iterate over both arrays or slices
 
-#### Iteration over finite sets
+#### Iteration Over Finite Sets
 
 - `for`-loops are typically for iterating over a closed-set (finite set) of elements
 
@@ -326,7 +371,7 @@ for index, card := range cards {
 - `range <slice>`
   - The range of slice we want to iterate over
 - `:=`
-  - With `for`-loops, the iteration variables are re-declared at each iteration
+  - _With `for`-loops, the iteration variables are re-declared at each iteration_
   - So we have to use `:=` instead of `=`
 - `index, card`
   - Variables used within the `for`-loop block
@@ -351,7 +396,7 @@ for _, card := range cards {
 }
 ```
 
-#### Iteration over infinite sets
+#### Iteration Over Infinite Sets
 
 - In Go, there is no `while` keyword for doing iterations over infinite sets
 - Instead, `for` can also be used in a `while`-like style for iterating over infinite sets of elements
@@ -390,7 +435,7 @@ for i := 0; i < len(cards); i++ {
 }
 ```
 
-#### `break`, `continue`, and `do-while`
+#### `break`, `continue`, And `do-while`
 
 - Go does not have a `do-while` loop either
 - Similar in other programming language, we can use `break` and `continue` to manipulate the flow of the loop
@@ -411,7 +456,7 @@ for {
     // Do something at least once
     fmt.Println("--", cards[j])
     j += 1
-    // Then check the condition: 
+    // Then check the condition:
     // Make sure it is reachable to avoid an infinite loop
     if j >= len(cards) {
         break
@@ -423,12 +468,12 @@ for {
 
 ### Types
 
-- **Go is not an *Object-Oriented* language**
-  - It does not have any comprehension of *Object* and *Class* types
-- Instead, we use *Types* and *Receivers*
+- **Go is not an _Object-Oriented_ language**
+  - It does not have any comprehension of _Object_ and _Class_ types
+- Instead, we use _Types_ and *Receivers*
   - Abstracted primitive types with additional functionalities
-  - We want to *extend* a base type and add some extra functionalities to it
-  - We could think of *Type* as a very simplified version of a *Class*
+  - We want to _extend_ a base type and add some extra functionalities to it
+  - We could think of _Type_ as a very simplified version of a *Class*
 
 ```go
 // Declaring a type: type <typeName> <equivalentType>
@@ -442,9 +487,9 @@ type deck []string
 - `equivalentType`
   - The primitive type that is equivalent to the declared type
 
-#### Initializing Function
+### Initializing Function
 
-- Because Go is not an Object-Oriented language, it does not have a *Constructor* for the types
+- Because Go is not an Object-Oriented language, it does not have a _Constructor_ for the types
 - Instead, we used an initializer function that acts as a type-instance generator function
 
 ```go
@@ -473,28 +518,30 @@ func newDeck() deck {
 }
 ```
 
-### Receiver function
+### Receiver Function
 
-- Receiver functions are like *Methods* that we attach to *Types*
-- Receiver functions are called like *Methods* on type instances
-- When attaching to a type, we typically use the initial of the type as the `this` or `self` keywords within the function to refer to the *Instance* of the type
+- Receiver functions are like _Methods_ that we attach to _Types_
+- Receiver functions are called like _Methods_ on type instances
+- When attaching to a type, we typically use the initial of the type as the `this` or `self` keywords within the function to refer to the _Instance_ of the type
   - This is not a mandate but a generally-accepted guideline
   - Example: `deck` -> `d`
 
-#### General declaration format of a receiver function
+#### General Declaration Format Of A Receiver Function
 
 ```go
 func (<t> <type>) <funcName>(<args>) <returnType> {
-    <body> 
+    <body>
 }
 ```
 
-- `<type>` - The type that we are attaching the receiver function to
-- `<t>` - The Instance Variable
+- `<type>`
+  - The type that we are attaching the receiver function to
+- `<t>`
+  - The _Instance Variable_
   - With Go, we never use `this` or `self`
   - Instead, by convention, we typically use the initial of the type
 
-#### Example of a receiver function
+#### Example Of A Receiver Function
 
 ```go
 // Declaring a Receiver Function: Attaching to a deck type
@@ -509,9 +556,14 @@ func (deck d) deal(hand_size int) (deck, deck) {
 }
 ```
 
-- When using a receiver function, we generally use it like a *Method* on the *Instance* of the type
+- When using a receiver function, we generally use it like a _Method_ on the _Instance_ of the type
 
-### Using types
+```go
+card_deck := newDeck()
+hand := card_deck.deal()
+```
+
+### Using Types
 
 - Typically, types and their functionalities would be defined in a separate `.go` file
   - Using the same `package` to link them all inside the same project
@@ -533,24 +585,37 @@ func main() {
 
 ## Writing To File
 
-- To deal with underlying OS files such as text files, we make use of the `"io/ioutil"` standard package
-- Use `WriteFile(filename string, data []byte, permissions)` to write to a file
-  - `filename` - A path of the file to write
-  - `[]byte` - Essentially a string of characters
-    - Every element inside a *Byte Slice* correspond to an ASCII character code
-    - We can use [asciitable.com](https://asciitable.com) as XWalk table for comprehension
-    - Essentially, a *Byte Slice* is just another way to represent a string
-  - `permissions` - Unix-like permission in Octal format
+```go
+import "os"
+
+os.WriteFile(
+    filename string,
+    data []byte,
+    permissions
+)
+```
+
+- To deal with underlying OS files such as text files, we make use of the `"os"` standard package
+- Use `WriteFile()` to write to a file
+- `filename`
+  - A path of the file to write
+- `[]byte`
+  - Essentially a string of characters in binary
+  - Every element inside a _Byte Slice_ correspond to an ASCII character code
+  - We can use [asciitable.com](https://asciitable.com) as Xwalk table for comprehension
+  - Essentially, a _Byte Slice_ is just another way to represent a string
+- `permissions`
+  - Unix-like permission in Octal format
   - Returns an `error` type by default
 
 ```go
 import (
     "fmt"
-    "io/ioutil"
+    "os"
 )
 ```
 
-- Because `WriteFile()` only takes *Byte Slice*, we need to convert the string to write to file into a *Byte SLice* `[]byte`
+- Because `WriteFile()` only takes _Byte Slice_, we need to convert the string to write to file into a _Byte SLice_ `[]byte`
 
 ```go
 // Converting a string to a []byte
@@ -568,25 +633,32 @@ fmt.Println(greeting_bytes)
 
 ```go
 // Writing text to file and ignoring returned error type
-_ = ioutil.WriteFile(
-    "datasave_hello_world.tmp", 
-    greeting_byte, 
+_ = os.WriteFile(
+    "datasave_hello_world.tmp",
+    greeting_byte,
     0666
 )
 ```
 
 ## Reading From File
 
-- To deal with underlying OS files such as text files, we make use of the `"io/ioutil"` standard package
-- Use `ReadFile(filename string)` to read from a file
-  - `filename` - A path of the file to read from
+```go
+import "os"
+
+os.ReadFile(filename string)
+```
+
+- To deal with underlying OS files such as text files, we make use of the `"os"` standard package
+- Use `ReadFile()` to read from a file
+- `filename`
+  - A path of the file to read from
   - Returns a *Byte-Slice*
   - Returns an `error` type by default
 
 ```go
 import (
     "fmt"
-    "io/ioutil"
+    "os"
 )
 ```
 
@@ -594,7 +666,7 @@ import (
 
 ```go
 // Reading from a file
-greeting_byte, err := ioutil.ReadFile(
+greeting_byte, err := os.ReadFile(
     "datasave_hello_world.sav"
 )
 
@@ -610,7 +682,7 @@ fmt.println(string(greeting_byte))
 
 ```go
 // Function call: Error would be returned as a second argument
-greeting_byte, err := ioutil.ReadFile("datasave_hello_world.sav")
+greeting_byte, err := os.ReadFile("datasave_hello_world.sav")
 
 // Error Handling
 if err != nil {
@@ -636,7 +708,8 @@ fmt.Println(greeting_byte)
   - Functions starting With `Test` will be automatically called with `t *testing.T`
   - `t` is the test-handler
     - If something is wrong, we use `t` to notify with an error message
-    - `t.Errorf()` - Allows to return an error with string formatting
+    - `t.Errorf()`
+      - Allows to return an error with string formatting
 - To run all the tests in the package: `> go test`
 
 ```go
@@ -659,7 +732,7 @@ func Test_NewDeck(t *testing.T) {
 ```
 
 - When testing with files, we have to make sure that we cleanup the files we test with
-  - Go does not automatically take care of test files
+- **Go does not automatically take care of test files**
 
 ```go
 // In deck_test.go
@@ -689,7 +762,7 @@ func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
 }
 ```
 
-### How do we know what to test?
+### How Do We Know What To Test?
 
 - What makes sense
 - What do you really care about with the feature?
