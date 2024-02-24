@@ -6,14 +6,9 @@ package main
 // ******
 import "fmt"
 
-// Type Definitions
-// ****************
-type hashmap map[string]string
-
 // Functions
 // *********
 func main() {
-
 	// A map of <string> => <string>
 	base_colors := map[string]string{
 		"red":   "ff0000",
@@ -48,27 +43,14 @@ func main() {
 
 	// Print colors using iteration
 	b_colors.print()
-
-}
-
-// Receiver functions for hashmap
-// ******************************
-func (c hashmap) print() {
-
-	// Iterating over a map of colors
-	for color, hex := range c {
-		fmt.Printf("Colors{%s: %s}\n", color, hex)
-	}
-
 }
 
 // FOR WINDOWS: FROM PROJECT FOLDER
-// 	To run:					go run src\main.go
-// 	To compile:				go build -o bin\program.exe src\main.go
+// 	To compile:				go build -o bin\program.exe .\src\
 // 	To run after compile:	.\bin\program.exe
 
 // FOR LINUX: FROM PROJECT FOLDER
 // 	To run:					go run src/main.go
-// 	To compile:				go build -o bin/program src/main.go
+// 	To compile:				go build -o bin/program ./src/
 // 	To run after compile:	./bin/program
-//	Compile + Run:			go build -o bin/program src/main.go && ./bin/program
+//	Compile + Run:			go build -o bin/program ./src/ && ./bin/program

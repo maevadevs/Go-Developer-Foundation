@@ -1,9 +1,20 @@
 # Maps
 
+---
+
+- [Maps Basics](#maps-basics)
+  - [Declaring A Map](#declaring-a-map)
+  - [Add Value To An Existing Map](#add-value-to-an-existing-map)
+  - [Delete From An Existing Map](#delete-from-an-existing-map)
+- [Maps Iteration](#maps-iteration)
+- [Map vs Struct](#map-vs-struct)
+
+---
+
 ## Maps Basics
 
 - Very similar to Structs but a collection of Key-Value Pairs
-- Similar to a Dictionaries in Python
+- Similar to a *Dictionaries* in Python
 - But how is it different from a Struct? (Since Structs are also Key-Value Pairs)
   - **In Maps, both the Keys and Values are statically-typed**
   - All the keys must be of the same exact type
@@ -11,7 +22,7 @@
   - For example: `key<int> => value<string>`
 
 ```go
-// A map of <string> => <string>
+// A map of key<string> => value<string>
 base_colors := map[string]string{
     "red":   "ff0000",
     "green": "00ff00",
@@ -19,7 +30,7 @@ base_colors := map[string]string{
 }
 ```
 
-### Declaring a map
+### Declaring A Map
 
 - Can we also declare a map using `var`?
 - Default zero-value for map is an empty-map: `map[]`
@@ -43,10 +54,10 @@ colors := make(map[string]string)
 fmt.Println("colors:", colors)
 ```
 
-### Add value to an existing map
+### Add Value To An Existing Map
 
 - To add values to an existing map, we can use `[]` syntax
-- We cannot use the `dot`-syntax with maps because all the keys are typed
+- We cannot use the `dot` syntax with maps because all the keys are typed
 
 ```go
 colors["white"] = "ffffff"
@@ -54,7 +65,7 @@ colors["black"] = "000000"
 fmt.Println("colors:", colors)
 ```
 
-### Delete from an existing map
+### Delete From An Existing Map
 
 - To delete existing mappings inside a map, we can use the built-in function `delete()`
 
