@@ -13,10 +13,10 @@ import (
 
 // Custom Interface
 // ****************
-type logWriter struct{}
+type ILogWriter struct{}
 
-// logWriter implements Writer
-func (logWriter) Write(bs []byte) (int, error) {
+// ILogWriter implements Writer
+func (ILogWriter) Write(bs []byte) (int, error) {
 	// Print the byte-slice
 	fmt.Println(string(bs))
 	// A custom implementation
@@ -30,7 +30,6 @@ func (logWriter) Write(bs []byte) (int, error) {
 func main() {
 	// Create an HTTP request
 	resp, err := http.Get("https://example.com")
-
 	// Error Handling
 	if err != nil {
 		fmt.Println("Error:", err)
@@ -38,7 +37,7 @@ func main() {
 	}
 
 	// Using a custom type that implements the Writer interface
-	lw := logWriter{}
+	lw := ILogWriter{}
 	io.Copy(lw, resp.Body)
 }
 

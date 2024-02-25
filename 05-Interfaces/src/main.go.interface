@@ -1,23 +1,29 @@
 // Package
 // *******
+
 package main
 
 // Imports
 // *******
+
 import (
 	"fmt"
 )
 
 // Interfaces and Types
 // ********************
+
 type IBot interface {
 	getGreeting() string
 }
-type englishBot struct{}
-type spanishBot struct{}
+type (
+	englishBot struct{}
+	spanishBot struct{}
+)
 
 // Receiver Functions
 // ******************
+
 func (englishBot) getGreeting() string {
 	// Imagine some logic that is custom to englishBot
 	// Custom implementation for englishBot
@@ -32,6 +38,7 @@ func (spanishBot) getGreeting() string {
 
 // Main Function
 // *************
+
 func main() {
 	// Define bot variables
 	eb := englishBot{}

@@ -1,5 +1,20 @@
 # Interface
 
+---
+
+- [Interface Basics](#interface-basics)
+- [Interface Rules](#interface-rules)
+- [Exploring the `HTTP` Package](#exploring-the-http-package)
+  - [Additional Interface Syntax](#additional-interface-syntax)
+  - [The `io.Reader` Interface](#the-ioreader-interface)
+  - [The `Read()` Function](#the-read-function)
+  - [The `Writer` Interface](#the-writer-interface)
+  - [The `io.Copy()` function](#the-iocopy-function)
+  - [Implementation of `io.Copy()`](#implementation-of-iocopy)
+  - [Custom `Writer`](#custom-writer)
+
+---
+
 ## Interface Basics
 
 - Interfaces are keys features in Go
@@ -51,8 +66,8 @@ func printGreeting(sb spanishhBot) {
   - As long as a `type` implements the same functions defined by the interface, they are good to go
 
 ```go
-//  type <type_name> interface { 
-//      <func_name>(<list_arg_types>) (<list_return_types>) 
+//  type <type_name> interface {
+//      <func_name>(<list_arg_types>) (<list_return_types>)
 //  }
 type IBot interface {
     getGreeting() string
@@ -180,7 +195,7 @@ type ReadCloser interface {
 [Different Src Types] --> [Reader] --> Universal Data Format
 ```
 
-- We can think of the interface as an adapter to generalize 
+- We can think of the interface as an adapter to generalize
   - `Reader` requires to define a function that can output a `[]byte`
   - We can write any different types of functions that can do so
 
