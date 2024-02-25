@@ -1,5 +1,12 @@
 # Assignments
 
+---
+
+- [Shapes](#shapes)
+- [Files](#files)
+
+---
+
 ## Shapes
 
 - Write a program that creates 2 custom struct types:
@@ -8,7 +15,7 @@
 - The `square` type should be a struct with a field called `sideLength` of type `float64`
 - The `triangle` type should be a struct with a field called `height` of type `float64` and a field called `base` of type `float64`
 - Both types should have function called `getArea` that returns the calculated area of the square or triangle
-  - Area of Triangle = 0.5 * base * height
+  - Area of Triangle = 0.5 *base* height
   - Area of Square = sideLength * sideLength
 - Add a `shape` interface that defines a function called `printArea`
   - This function should calculate the area of the given shape and print out to the terminal

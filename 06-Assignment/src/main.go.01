@@ -10,7 +10,7 @@ import (
 
 // Interfaces
 // **********
-type shape interface {
+type IShape interface {
 	getArea() float64
 }
 
@@ -36,7 +36,7 @@ func (s square) getArea() float64 {
 
 // Helper Functions
 // ****************
-func printArea(s shape) {
+func printArea(s IShape) {
 	fmt.Println("The area of the shape is", s.getArea())
 }
 
