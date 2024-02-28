@@ -23,6 +23,7 @@ In practice, always the same typical pattern
 ## Package
 
 - Package == Project == Workspace == Namespace
+- A collection of common source code files
 - A Package can have many files associated with it
   - Each file ending with `.go`
   - The very first line of each file in the same package must start with the package declaration
@@ -30,12 +31,12 @@ In practice, always the same typical pattern
 - There are 2 types of packages:
 
 1. **Executable**
-     - Always `main` package
-     - Must always have a function called `main()` as well
+     - ***Always `main` package***
+     - ***Must always have a function called `main()` as well***
      - Generates a .exe/.bin file that we can run after compiling
      - Code used when we want to do something (Executable codes)
 2. **Reusable**
-     - Any other package name other than `main`
+     - ***Any other package name other than `main`***
      - Code used as *helpers* for reusable logic, libraries, dependencies
 
 - *Files in the same package do not have to be imported into each other before they can be used*
@@ -49,12 +50,13 @@ package main
 ## Import
 
 - Allows to import reusable codes from other packages
+- ***`import` is not necessary if the function/file to import is inside the same package***
 - Example: `"fmt"`
   - A standard package within Go ([pkg.go.dev/std](https://pkg.go.dev/std))
   - Short for *format*
   - Mostly used for debugging and development
 - Unless we import a package, we have no access to any functionalities from another package
-  - Exception: *Files in the same package do not have to be imported into each other before they can be used*
+  - Exception: ***Files in the same package do not have to be imported into each other before they can be used***
 - We are not limited to importing packages from the standard library
   - We can import packages written by other engineers and 3rd partie as well
 
@@ -100,11 +102,11 @@ Module > Package > Source Files
 ```
 
 - Modules contain Packages
-- Packages contain Source files
-- Initialize a Module folder with:
+- Packages contain Source files `.go`
+- Initialize a directory into a Module with:
 
 ```sh
-cd path/to/module/folder
+cd path/to/module/directory
 go mod init unique/path/for/source
 ```
 
