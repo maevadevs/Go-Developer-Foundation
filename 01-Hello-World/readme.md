@@ -156,5 +156,5 @@ go mod init unique/path/for/source
 
 - This creates a `go.mod` file inside of the module folder
   - Contains the unique path for the module
-  - Contains the version of go used for the module
+  - Contains the version of Go used for the module
 - Typically, the path is on Github but it does not have to: It can be any path
