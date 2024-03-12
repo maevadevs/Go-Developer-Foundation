@@ -16,9 +16,9 @@
 
 In practice, always the same typical pattern
 
-1. **Package Declaration**
-2. **Imports Packages**
-3. **Define Functions & Objects**
+1. **Package Declaration Declaration**
+2. **Imports Packages Packages**
+3. **Define Define Functions & Objects & Objects**
 
 ### Package
 
