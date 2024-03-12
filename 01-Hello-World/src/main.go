@@ -12,14 +12,14 @@ func main() {
 	// Print to the screen
 	fmt.Println("Hello World!")
 
-    // Print to screen with some string formatting
-    // It does not insert new line by default
-    // We can still insert new line explicitly
-    fmt.Printf("Hello again %s", "World!\n")
+	// Print to screen with some string formatting
+	// It does not insert new line by default
+	// We can still insert new line explicitly
+	fmt.Printf("Hello again %s", "World!\n")
 
-    // Print to screen without new line
-    // We can still insert new line explicitly
-    fmt.Print("Hello with no new line!\n")
+	// Print to screen without new line
+	// We can still insert new line explicitly
+	fmt.Print("Hello with no new line!\n")
 
 	// Wait before closing the console
 	fmt.Println("\nPress enter to exit...")
