@@ -1,12 +1,27 @@
 # Concurrency: Channels and Go Routines
 
+---
+
+- [Status Checker Project](#status-checker-project)
+- [Serial Approach](#serial-approach)
+- [Parallel Approach](#parallel-approach)
+  - [Go Routines](#go-routines)
+  - [Theory of Go Routine](#theory-of-go-routine)
+  - [Go Channels](#go-channels)
+    - [Sending value via a channel](#sending-value-via-a-channel)
+    - [Receiving a value via a channel](#receiving-a-value-via-a-channel)
+  - [Fundamentals of Channels](#fundamentals-of-channels)
+  - [Function Literal](#function-literal)
+
+---
+
 - Channels and Go Routines are structures in Go that are used for handling concurrent programming
 
 ## Status Checker Project
 
 - We will build a small program that is a Status Checker
-- It will allows to send HTTP requests to a list of url
-- We want to check if the url are up or down
+- It will allow to send HTTP requests to a list of urls
+- We want to check if the urls are up or down
 - We send `Get` requests to different urls to check their status
   - We could do this with a loop and send the request one by one
   - Each requests will execute one after the other
@@ -15,7 +30,6 @@
 
 ```go
 func checkLink(link string) {
-
     // Test the link with a Get call
     _, err := http.Get(link)
 
@@ -27,13 +41,11 @@ func checkLink(link string) {
 
     // Else, we are good
     fmt.Println(link, "is up")
-
 }
 ```
 
 ```go
 func main() {
-
     // A list of urls
     urls := []string{
         "https://google.com",
@@ -47,12 +59,11 @@ func main() {
     for _, url := range urls {
         checkLink(url)
     }
-
 }
 ```
 
 - There is a distinct delay between each fetching of the urls
-- We are sitting for the request to complete before moving
+- We are waiting for the request to complete before moving
   - This is a *Blocking Pattern*
   - This is a *Sequential* or *Serial*
   - The more we have links, the slower is the performance
@@ -72,7 +83,7 @@ func main() {
   - The code takes some amount of time to execute
   - The whole program is temporarily frozen here until this call is finished
 - Instead of making this piece of code blocking, we will make us of Go Routine
-- Go Routine implements *Async (Callback) with Threads* in Go
+- **Go Routine implements *Async (Callback) with Threads* in Go**
   - Place a `go` keyword in front of it
   - **Only use a `go` keyword in front of a function call**
   - Run the execution inside of a separate Go Routine
