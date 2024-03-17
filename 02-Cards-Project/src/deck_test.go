@@ -1,5 +1,7 @@
 /**
  * @file: Unit tests for the Deck type
+ * To run the tests, make sure to be in the same location as this file
+ * In VS Code, we have the options for "Run Package Tests" and "Run File Tests"
  */
 
 // Package
@@ -18,7 +20,7 @@ import (
 //   - A deck should be created with x number of cards
 //   - The 1st card should be an "A of Spade"
 //   - The last card should be a "K of Club"
-func Test_NewDeck(t *testing.T) {
+func Test_newDeck(t *testing.T) {
 	// Deck Instance to test on
 	var d deck
 
@@ -27,10 +29,15 @@ func Test_NewDeck(t *testing.T) {
 	// Create a new deck
 	d = newDeck()
 
-	// Expect: The deck has 52 number of cards
-	if len(d) != 52 {
+	// Set expectations:
+	// The deck should have 52 number of cards
+	expectedDeckLen := 52
+	actualDeckLen := len(d)
+
+	// Test expectations
+	if expectedDeckLen != actualDeckLen {
 		// If not, something is wrong --> Notify the test-handler t
-		t.Errorf("Expected deck length of 52. Got %v", len(d))
+		t.Errorf("Test Case 1: Expected deck length of %v. Got %v", expectedDeckLen, actualDeckLen)
 	}
 
 	// TEST CASE 2: The 1st card should be an "A of Spade"
@@ -38,10 +45,15 @@ func Test_NewDeck(t *testing.T) {
 	// Create a new deck
 	d = newDeck()
 
-	// Expect: The 1st card is an "A of Spade"
-	if d[0] != "A of Spade" {
+	// Set expectations:
+	// The 1st card is "A of Spade"
+	expected1stCard := "A of Spade"
+	actual1stCard := d[0]
+
+	// Test expectations
+	if expected1stCard != actual1stCard {
 		// If not, something is wrong --> Notify the test-handler t
-		t.Errorf("Expected 1st card to be 'A of Spade'. Got %v", d[0])
+		t.Errorf("Expected 1st card to be %v. Got %v", expected1stCard, actual1stCard)
 	}
 
 	// TEST CASE 3: The last card should be a "K of Club"
@@ -49,10 +61,15 @@ func Test_NewDeck(t *testing.T) {
 	// Create a new deck
 	d = newDeck()
 
-	// Expect: The last card is a "K of Club"
-	if d[len(d)-1] != "K of Club" {
+	// Set expectations:
+	// The last card is "K of Club"
+	expectedLastCard := "K of Club"
+	actualLastCard := d[len(d)-1]
+
+	// Test expectations
+	if expectedLastCard != actualLastCard {
 		// If not, something is wrong --> Notify the test-handler t
-		t.Errorf("Expected last card to be 'K of Club'. Got %v", d[0])
+		t.Errorf("Expected last card to be %v. Got %v", expectedLastCard, actualLastCard)
 	}
 }
 
@@ -60,7 +77,7 @@ func Test_NewDeck(t *testing.T) {
 // -------------------------------------------------
 // When testing with files, we have to make sure that we cleanup the files we test with
 // Go does not automatically take care of test files
-func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
+func Test_saveToFileAndNewDeckFromFile(t *testing.T) {
 	// Delete any file _decktesting.tmp from past tests if any
 	os.Remove("_decktesting.tmp")
 
@@ -71,16 +88,21 @@ func Test_SaveToFileAndNewDeckFromFile(t *testing.T) {
 	d.saveToFile("_decktesting.tmp")
 
 	// Attempt to load from disk
-	loaded_deck := newDeckFromFile("_decktesting.tmp")
+	loadedDeck := newDeckFromFile("_decktesting.tmp")
 
-	// Expect: the Loaded Deck has 52 number of cards
-	if len(loaded_deck) != 52 {
+	// Set expectations:
+	// The length of the loaded deck from file should be the same as the original deck
+	expectedLoadedDeckLen := len(d)
+	actualLoadedDeckLen := len(loadedDeck)
+
+	// Test expectations
+	if expectedLoadedDeckLen != actualLoadedDeckLen {
 		// If not, something is wrong --> Notify the test-handler t
 		// Errorf() is a formatted string: We can use % for placeholders
-		t.Errorf("Expected loaded deck length of 52. Got %v", len(d))
+		t.Errorf("Expected loaded deck length of %v. Got %v", expectedLoadedDeckLen, actualLoadedDeckLen)
 	}
 
-	// Finally, clean up after ourselves
+	// Finally, clean up any temp test files
 	os.Remove("_decktesting.tmp")
 }
 

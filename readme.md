@@ -2,7 +2,7 @@
 
 ---
 
-This is a developer's foundation for working with Go
+This is a developer's foundation for working with Go.
 
 1. [Hello World](./01-Hello-World/)
 1. [Cards Project](./02-Cards-Project/)
