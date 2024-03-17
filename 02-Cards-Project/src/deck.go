@@ -104,10 +104,10 @@ func (d deck) shuffle(times uint) {
 		// Go through the list of cards
 		for currentI := range d {
 			// Generate a random index number: [0, len(d)-1]
-			//	We could make use of the rand.intn() function for this
-			//	By default, the random number generator will always use the exact same seed
-			//	Without a new seed, we will always get the exact same sequence
-			//	randGen - We make use of the defined Time-Based Random Number Generator
+			// We could make use of the rand.intn() function for this
+			// By default, the random number generator will always use the exact same seed
+			// Without a new seed, we will always get the exact same sequence
+			// randGen - We make use of the defined Time-Based Random Number Generator
 			randomI := randGen.Intn(len(d) - 1)
 
 			// Swap the current card and the card at the random index number
@@ -144,8 +144,8 @@ func newDeckFromFile(filename string) deck {
 	// Error Handling: Make sure that there is no errors before continuing
 	if err != nil {
 		// If here, we got an error in reading the file
-		//	1. Print out the error but don't fail execution
-		//	2. Create a new deck
+		//   1. Print out the error but don't fail execution
+		//   2. Create a new deck
 		fmt.Println("Error:", err)
 		fmt.Println("We are creating a brand new deck...")
 		return newDeck()
