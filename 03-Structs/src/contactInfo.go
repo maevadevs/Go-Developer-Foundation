@@ -7,6 +7,6 @@ package main
 // *******
 
 type contactInfo struct {
-	email    string
-	zip_code int
+	email   string
+	zipCode int
 }

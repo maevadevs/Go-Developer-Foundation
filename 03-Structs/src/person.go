@@ -12,9 +12,10 @@ import "fmt"
 // *******
 
 type person struct {
-	first_name string
-	last_name  string
-	contact    contactInfo
+	firstName string
+	lastName  string
+    // Embedded struct
+	contact   contactInfo
 }
 
 // Receiver Functions
@@ -27,7 +28,8 @@ func (p person) print() {
 // Using pointer as receiver allows us to pass-by-reference
 //
 //	*var - Operator to access the value that exist at the memory address (pointer)
+//         But Go can also automatically de-reference
 //	*person - A type of Pointer that point to a person type
-func (ptr *person) updateName(new_first_name string) {
-	(*ptr).first_name = new_first_name
+func (ptrPers *person) updateFirstName(newFirstName string) {
+	ptrPers.firstName = newFirstName
 }
