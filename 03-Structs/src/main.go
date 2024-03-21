@@ -1,15 +1,15 @@
 // Package
 // *******
-
 package main
 
 // Import
 // ******
-
 import "fmt"
 
 // main()
 // ******
+
+// This is the main entry of the application.
 func main() {
 	// Declare variable:
 	// Fields default to null-value
@@ -65,11 +65,14 @@ func main() {
 	fmt.Println(myArray)
 }
 
-// FOR WINDOWS: FROM PROJECT FOLDER
-//  To compile:             go build -o 03-Structs\bin\Program.exe .\03-Structs\src\
+// FOR WINDOWS:
+//  To run:                 go run 03-Structs\src\*.go
+//  To compile:             go build -o 03-Structs\bin\Program.exe 03-Structs\src\*.go
 //  To run after compile:   .\03-Structs\bin\Program.exe
+//  Compile + Run:          go build -o 03-Structs\bin\Program.exe 03-Structs\src\*.go && .\03-Structs\bin\Program.exe
 
-// FOR LINUX: FROM PROJECT FOLDER
-//  To compile:             go build -o 03-Structs/bin/Program ./03-Structs/src/
+// FOR LINUX:
+//  To run:                 go run 03-Structs/src/*.go
+//  To compile:             go build -o 03-Structs/bin/Program 03-Structs/src/*.go
 //  To run after compile:   ./03-Structs/bin/Program
-//  Compile + Run:          go build -o 03-Structs/bin/Program ./03-Structs/src/ && ./03-Structs/bin/Program
+//  Compile + Run:          go build -o 03-Structs/bin/Program 03-Structs/src/*.go && ./03-Structs/bin/Program

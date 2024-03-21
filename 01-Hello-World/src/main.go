@@ -8,6 +8,8 @@ import "fmt"
 
 // Functions
 // *********
+
+// This is the main entry of the application.
 func main() {
 	// Print to the screen
 	fmt.Println("Hello World!")
@@ -26,13 +28,14 @@ func main() {
 	fmt.Scanln()
 }
 
-// FOR WINDOWS: FROM PROJECT FOLDER
+// FOR WINDOWS:
 //  To run:                 go run 01-Hello-World\src\main.go
-//  To compile:             go build -o 01-Hello-World\bin\program.exe 01-Hello-World\src\main.go
-//  To run after compile:   .\01-Hello-World\bin\program.exe
+//  To compile:             go build -o 01-Hello-World\bin\Program.exe 01-Hello-World\src\main.go
+//  To run after compile:   .\01-Hello-World\bin\Program.exe
+//  Compile + Run:          go build -o 01-Hello-World\bin\Program.exe 01-Hello-World\src\*.go && .\01-Hello-World\bin\Program.exe
 
-// FOR LINUX: FROM PROJECT FOLDER
+// FOR LINUX:
 //  To run:                 go run 01-Hello-World/src/main.go
-//  To compile:             go build -o 01-Hello-World/bin/program 01-Hello-World/src/main.go
-//  To run after compile:   ./01-Hello-World/bin/program
-//  Compile + Run:          go build -o 01-Hello-World/bin/program 01-Hello-World/src/main.go && ./01-Hello-World/bin/program
+//  To compile:             go build -o 01-Hello-World/bin/Program 01-Hello-World/src/main.go
+//  To run after compile:   ./01-Hello-World/bin/Program
+//  Compile + Run:          go build -o 01-Hello-World/bin/Program 01-Hello-World/src/main.go && ./01-Hello-World/bin/Program

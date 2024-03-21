@@ -1,11 +1,9 @@
 // Package
 // *******
-
 package main
 
 // Import
 // ******
-
 import "fmt"
 
 // Structs
@@ -30,6 +28,7 @@ func (p person) print() {
 //	*var - Operator to access the value that exist at the memory address (pointer)
 //	       But Go can also automatically de-reference
 //	*person - A type of Pointer that point to a person type
+
 func (ptrPers *person) updateFirstName(newFirstName string) {
 	ptrPers.firstName = newFirstName
 }

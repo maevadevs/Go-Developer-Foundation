@@ -22,7 +22,7 @@ import (
 // Functions
 // *********
 
-// This is the main entry of the application
+// This is the main entry of the application.
 func main() {
 	// Variables: deck type
 	// playingDeck is essentially a slice of strings

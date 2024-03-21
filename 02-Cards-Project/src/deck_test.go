@@ -20,6 +20,7 @@ import (
 //   - A deck should be created with x number of cards
 //   - The 1st card should be an "A of Spade"
 //   - The last card should be a "K of Club"
+
 func Test_newDeck(t *testing.T) {
 	// Deck Instance to test on
 	var d deck
@@ -77,6 +78,7 @@ func Test_newDeck(t *testing.T) {
 // -------------------------------------------------
 // When testing with files, we have to make sure that we cleanup the files we test with
 // Go does not automatically take care of test files
+
 func Test_saveToFileAndNewDeckFromFile(t *testing.T) {
 	// Delete any file _decktesting.tmp from past tests if any
 	os.Remove("_decktesting.tmp")

@@ -9,6 +9,7 @@ import "fmt"
 // main
 // ****
 
+// This is the main entry of the application.
 func main() {
 	// A map of <string> => <string>
 	baseColors := map[string]string{
@@ -50,11 +51,14 @@ func main() {
 	b_colors.print()
 }
 
-// FOR WINDOWS: FROM PROJECT FOLDER
-//  To compile:             go build -o 04-Maps\bin\Program.exe .\04-Maps\src\
+// FOR WINDOWS:
+//  To run:                 go run 04-Maps\src\*.go
+//  To compile:             go build -o 04-Maps\bin\Program.exe 04-Maps\src\*.go
 //  To run after compile:   .\04-Maps\bin\Program.exe
+//  Compile + Run:          go build -o 04-Maps\bin\Program.exe 04-Maps\src\*.go && .\04-Maps\bin\Program.exe
 
-// FOR LINUX: FROM PROJECT FOLDER
-//  To compile:             go build -o 04-Maps/bin/Program ./04-Maps/src/
+// FOR LINUX:
+//  To run:                 go run 04-Maps/src/*.go
+//  To compile:             go build -o 04-Maps/bin/Program 04-Maps/src/*.go
 //  To run after compile:   ./04-Maps/bin/Program
-//  Compile + Run:          go build -o 04-Maps/bin/Program ./04-Maps/src/ && ./04-Maps/bin/Program
+//  Compile + Run:          go build -o 04-Maps/bin/Program 04-Maps/src/*.go && ./04-Maps/bin/Program
