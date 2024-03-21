@@ -6,24 +6,28 @@ package main
 // ******
 import "fmt"
 
-// Functions
-// *********
+// main
+// ****
+
 func main() {
 	// A map of <string> => <string>
-	base_colors := map[string]string{
+	baseColors := map[string]string{
 		"red":   "ff0000",
 		"green": "00ff00",
 		"blue":  "0000ff",
 	}
 
 	// Print the map to see its format
-	fmt.Println("base_colors:", base_colors)
+	fmt.Println("baseColors:", baseColors)
+	fmt.Println()
 
 	// Declare a map with make()
 	colors := make(map[string]string)
 	fmt.Println("colors:", colors)
+	fmt.Println()
 
 	// Add values to a map
+	// We cannot use dot-syntax with maps
 	colors["white"] = "ffffff"
 	colors["black"] = "000000"
 	fmt.Println("colors:", colors)
@@ -31,9 +35,10 @@ func main() {
 	// Delete an existing mapping inside a map
 	delete(colors, "white")
 	fmt.Println("colors:", colors)
+	fmt.Println()
 
-	// Defining colors as a hashmap type
-	b_colors := hashmap{
+	// Defining colors as a custommap type
+	b_colors := custommap{
 		"red":   "ff0000",
 		"green": "00ff00",
 		"blue":  "0000ff",
@@ -46,11 +51,10 @@ func main() {
 }
 
 // FOR WINDOWS: FROM PROJECT FOLDER
-// 	To compile:				go build -o bin\program.exe .\src\
-// 	To run after compile:	.\bin\program.exe
+//  To compile:             go build -o 04-Maps\bin\Program.exe .\04-Maps\src\
+//  To run after compile:   .\04-Maps\bin\Program.exe
 
 // FOR LINUX: FROM PROJECT FOLDER
-// 	To run:					go run src/main.go
-// 	To compile:				go build -o bin/program ./src/
-// 	To run after compile:	./bin/program
-//	Compile + Run:			go build -o bin/program ./src/ && ./bin/program
+//  To compile:             go build -o 04-Maps/bin/Program ./04-Maps/src/
+//  To run after compile:   ./04-Maps/bin/Program
+//  Compile + Run:          go build -o 04-Maps/bin/Program ./04-Maps/src/ && ./04-Maps/bin/Program

@@ -8,13 +8,15 @@ import "fmt"
 
 // Type Definitions
 // ****************
-type hashmap map[string]string
+
+type custommap map[string]string
 
 // Receiver functions for hashmap
 // ******************************
-func (c hashmap) print() {
+
+func (cm custommap) print() {
 	// Iterating over a map of colors
-	for color, hex := range c {
-		fmt.Printf("Colors{%s: %s}\n", color, hex)
+	for k, v := range cm {
+		fmt.Printf("Colors{%s: %s}\n", k, v)
 	}
 }
