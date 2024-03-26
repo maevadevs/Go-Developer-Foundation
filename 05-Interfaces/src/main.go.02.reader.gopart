@@ -1,0 +1,55 @@
+// PART 2
+// ******
+// To run this file, rename it to main.go and run as the listed call at the end of the file
+
+// Package
+// *******
+package main
+
+// Imports
+// *******
+import (
+	"fmt"
+	"net/http"
+	"os"
+)
+
+// main
+// ****
+
+// The main entry point of the application.
+func main() {
+	// Create an HTTP request
+	resp, err := http.Get("https://example.com")
+
+    // Error Handling
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	// A byte slice "pointer" for getting the http data
+	// make(<type>, <number_of_elements>)
+	// Initialize with a large number to fit what Read() will pass to it
+	bs := make([]byte, 99999)
+
+	// Pass the byte slice to the Read function
+	// Read() does not automatically resize the slice
+	// Only read data into the byte slice until it is fully
+	resp.Body.Read(bs)
+
+	// Print out the actual byte slice
+	fmt.Println(string(bs))
+}
+
+// FOR WINDOWS:
+//  To run:                 go run 05-Interfaces\src\main.go
+//  To compile:             go build -o 05-Interfaces\bin\Program.exe 05-Interfaces\src\main.go
+//  To run after compile:   .\05-Interfaces\bin\Program.exe
+//  Compile + Run:          go build -o 05-Interfaces\bin\Program.exe 05-Interfaces\src\main.go && .\05-Interfaces\bin\Program.exe
+
+// FOR LINUX:
+//  To run:                 go run 05-Interfaces/src/main.go
+//  To compile:             go build -o 05-Interfaces/bin/Program 05-Interfaces/src/main.go
+//  To run after compile:   ./05-Interfaces/bin/Program
+//  Compile + Run:          go build -o 05-Interfaces/bin/Program 05-Interfaces/src/main.go && ./05-Interfaces/bin/Program

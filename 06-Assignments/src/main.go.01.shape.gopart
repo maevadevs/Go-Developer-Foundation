@@ -1,3 +1,7 @@
+// PART 1
+// ******
+// To run this file, rename it to main.go and run as the listed call at the end of the file
+
 // Package
 // *******
 package main
@@ -10,12 +14,14 @@ import (
 
 // Interfaces
 // **********
+
 type IShape interface {
 	getArea() float64
 }
 
 // Structs
 // *******
+
 type triangle struct {
 	height float64
 	base   float64
@@ -26,6 +32,7 @@ type square struct {
 
 // Concrete Types Receiver Functions
 // *********************************
+
 func (t triangle) getArea() float64 {
 	return 0.5 * t.base * t.height
 }
@@ -36,24 +43,27 @@ func (s square) getArea() float64 {
 
 // Helper Functions
 // ****************
+
 func printArea(s IShape) {
 	fmt.Println("The area of the shape is", s.getArea())
 }
 
 // Main Functions
 // **************
+
 func main() {
 	// Initialize type instances
-	my_triangle := triangle{
+	myTriangle := triangle{
 		height: 30,
 		base:   10,
 	}
-	my_square := square{
+	mySquare := square{
 		sideLength: 15,
 	}
+
 	// Print their areas
-	printArea(my_triangle)
-	printArea(my_square)
+	printArea(myTriangle)
+	printArea(mySquare)
 }
 
 // FOR WINDOWS:

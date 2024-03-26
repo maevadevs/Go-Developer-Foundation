@@ -1,0 +1,48 @@
+// PART 1
+// ******
+// To run this file, rename it to main.go and run as the listed call at the end of the file
+
+// Package
+// *******
+package main
+
+// Imports
+// *******
+import (
+	"fmt"
+)
+
+// Main Function
+// *************
+
+// This is the main entry of the application.
+func main() {
+	// Define bot variables
+	eb := englishBot{}
+	sb := spanishBot{}
+
+	// Call print function for each bot types
+	// As long as each bot implements the specifications of the interface, we are good to go
+	printGreeting(eb)
+	printGreeting(sb)
+}
+
+// Helper Functions
+// ****************
+
+// Calls Ib.getGreeting().
+func printGreeting(Ib IBot) {
+	fmt.Println(Ib.getGreeting())
+}
+
+// FOR WINDOWS:
+//  To run:                 go run 05-Interfaces\src\*.go
+//  To compile:             go build -o 05-Interfaces\bin\Program.exe 05-Interfaces\src\*.go
+//  To run after compile:   .\05-Interfaces\bin\Program.exe
+//  Compile + Run:          go build -o 05-Interfaces\bin\Program.exe 05-Interfaces\src\*.go && .\05-Interfaces\bin\Program.exe
+
+// FOR LINUX:
+//  To run:                 go run 05-Interfaces/src/*.go
+//  To compile:             go build -o 05-Interfaces/bin/Program 05-Interfaces/src/*.go
+//  To run after compile:   ./05-Interfaces/bin/Program
+//  Compile + Run:          go build -o 05-Interfaces/bin/Program 05-Interfaces/src/*.go && ./05-Interfaces/bin/Program

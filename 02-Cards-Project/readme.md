@@ -555,6 +555,7 @@ func (<t> <type>) <funcName>(<args>) <returnType> {
   - The *Instance Variable*
   - With Go, we never use `this` or `self`
   - Instead, by convention, we typically use the initial of the type
+  - **NOTE: When the instance variable is not being used in the function, we can remove it**
 
 #### Example Of A Receiver Function
 

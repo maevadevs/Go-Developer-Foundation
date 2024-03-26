@@ -1,3 +1,7 @@
+// PART 2
+// ******
+// To run this file, rename it to main.go and run as the listed call at the end of the file
+
 // Package
 // *******
 package main
@@ -12,36 +16,38 @@ import (
 )
 
 // Functions
-// ********
+// *********
+
 func main() {
 	// Grab the filepath from the user
-	path_str := os.Args[1]
-	abs_path, error_path := filepath.Abs(path_str)
+	pathStr := os.Args[1]
+	absPath, errorPath := filepath.Abs(pathStr)
 
 	// Check for error
-	if error_path != nil {
-		fmt.Println("Error:", error_path)
+	if errorPath != nil {
+		fmt.Println("Error:", errorPath)
 		os.Exit(1)
 	}
 
 	// Attempt to open the file
-	textfile_ptr, openfile_err := os.Open(abs_path)
+	textfilePtr, openfileErr := os.Open(absPath)
 
 	// Check for error
-	if openfile_err != nil {
-		fmt.Println("Error:", openfile_err)
+	if openfileErr != nil {
+		fmt.Println("Error:", openfileErr)
 		os.Exit(1)
 	}
+
 	// The File implements the Reader interface
-	io.Copy(os.Stdout, textfile_ptr)
+	io.Copy(os.Stdout, textfilePtr)
 }
 
 // FOR WINDOWS:
-//	To compile:				go build -o 06-Assignment\bin\files.exe 06-Assignment\src\main.go
-//	To run after compile:	.\06-Assignment\bin\files.exe 06-Assignment\src\textfile.txt
-//	Compile + Run:			go build -o 06-Assignment\bin\files.exe 06-Assignment\src\main.go && .\06-Assignment\bin\files.exe
+//	To compile:				go build -o 06-Assignments\bin\files.exe 06-Assignments\src\main.go
+//	To run after compile:	.\06-Assignments\bin\files.exe 06-Assignments\src\textfile.txt
+//	Compile + Run:			go build -o 06-Assignments\bin\files.exe 06-Assignments\src\main.go && .\06-Assignments\bin\files.exe
 
 // FOR LINUX:
-//	To compile:				go build -o 06-Assignment/bin/files 06-Assignment/src/main.go
-//	To run after compile:	./06-Assignment/bin/files 06-Assignment/src/textfile.txt
-//	Compile + Run:			go build -o 06-Assignment/bin/files 06-Assignment/src/main.go && ./06-Assignment/bin/files textfile.txt
+//	To compile:				go build -o 06-Assignments/bin/files 06-Assignments/src/main.go
+//	To run after compile:	./06-Assignments/bin/files 06-Assignments/src/textfile.txt
+//	Compile + Run:			go build -o 06-Assignments/bin/files 06-Assignments/src/main.go && ./06-Assignments/bin/files 06-Assignments/src/textfile.txt

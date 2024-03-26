@@ -17,11 +17,11 @@
 
 ## Interface Basics
 
-- Interfaces are keys features in Go
+- **Interfaces are keys features in Go**
 - We know that:
   - Every value has a type
   - Every function has to specify the types of its arguments
-  - So should every function accomodate different types even if the logic in it is identical?
+  - *So should every function accomodate different types even if the logic in it is identical?*
 - Let's imagine we have the following structs
 
 ```go
@@ -29,9 +29,9 @@ type englishBot struct{}
 type spanishBot struct{}
 ```
 
-- They are very similar to each other
+- They are both *bots* so they are very similar to each other
 - The following functions would probably be different for each bot
-  - NOTE: For receiver, when the instance variable is not being used in the function, we can remove it
+  - **NOTE: For receiver functions, when the instance variable is not being used in the function, we can remove it**
 
 ```go
 func (englishBot) getGreeting() string {
@@ -47,9 +47,7 @@ func (spanishBot) getGreeting() string {
 }
 ```
 
-- However, the functionalities in the following functions are not specifically tied to a bot type
-  - We could generalize them with any other types of *things* that are similar
-  - In part, this is what Interfaces resolve: Makes it easier to re-use codes in our codebase
+- **However, the functionalities in the following functions are not specifically tied to a bot type**
 
 ```go
 func printGreeting(eb englishBot) {
@@ -61,14 +59,24 @@ func printGreeting(sb spanishhBot) {
 }
 ```
 
-- We can refactor those to make use of interface
-  - Interface is like a contract with a type
-  - As long as a `type` implements the same functions defined by the interface, they are good to go
+- We could generalize them with any other types of *things* that are similar
+  - ***In part, this is what Interfaces resolve: Makes it easier to re-use codes in our codebase based on type generalization***
+  - We can refactor those to make use of interface
+- **Interface is like a contract with a type**
+  - *As long as a `type` implements the same functions defined by the interface, they are good to go*
+  - Format of Interface Declaration
 
 ```go
-//  type <type_name> interface {
-//      <func_name>(<list_arg_types>) (<list_return_types>)
-//  }
+type <type_name> interface {
+    <func_name>(<list_arg_types>) <return_type>
+    <func_name>(<list_arg_types>) <return_type>
+    ...
+}
+```
+
+- **Interfaces can define shared functions that must be defined by implementing types**
+
+```go
 type IBot interface {
     getGreeting() string
     getBotVersion() float64
@@ -77,12 +85,13 @@ type IBot interface {
 type englishBot struct{}
 type spanishBot struct{}
 
+// Interface can define shared functions
 func printGreeting(b IBot) {
     fmt.Println(b.getGreeting())
 }
 ```
 
-- Interface are essentially `type` definitions
+- **Interfaces are essentially `type` definitions**
 - Interfaces define what functionalities a `type` should implement
   - It is a contract with a `type`
   - A `type` that wants to act as `IBot` must implement the functions defined by the `IBot` interface
@@ -93,18 +102,20 @@ func printGreeting(b IBot) {
 - **Interfaces are NOT *Concrete Types***
   - **Concrete Type**
     - We can create a value from directly
-    - Examples: `engishBot`, `spanishBot`, `int`, `string`...)
+    - E.g. `engishBot`, `spanishBot`, `int`, `string`...
   - **Interface Type**
-    - We cannot create values directly from an Interface (e.g. `IBot`)
-    - Interface Types are only used to define arguments taken by functions
+    - We cannot create values directly from an Interface
+    - E.g.`IBot`
+    - *Interface Types are only used to define arguments taken by functions*
 - **Interfaces are NOT *Generic Types***
   - Go does not have support for Generic Types
 - **Interfaces are *Implicit***
-  - As long as the concrete types follow the contract functions, they are a type of the interface
-  - In Go, we do not use `IMPLEMENTS` keyword with interfaces
+  - We do not explicitly specify that a type *implements* an interface
+  - *As long as the concrete types follow the specified contract functions, they are a honorary members of the interface*
+  - In Go, we do not use `implement` keyword with interfaces
   - Might make it a bit confusing which types implement an interface
 - **Interfaces are a *Contracts* to help us manage types**
-  - But we stil need to know how to implement well the logic
+  - But we stil need to know how to implement the logic well
   - If we don't, we will have *GIGO (Garbage-In, Garbage-Out)*
 
 ## Exploring the `HTTP` Package
@@ -113,6 +124,11 @@ func printGreeting(b IBot) {
 - We will use the `net/http` package to make HTTP requests
 
 ```go
+import (
+    "fmt"
+    "net/http"
+)
+
 func main() {
     // Create an HTTP request
     resp, err := http.Get("https://example.com")
@@ -129,8 +145,14 @@ func main() {
 ```
 
 - But the response we get is not actually the HTML representation
-  - The response `resp` is a pointer
-  - `resp` is actually a `struct` that contains information about the response object ([docs](https://pkg.go.dev/net/http@go1.18.1#Response))
+  - **The response `resp` is a pointer**
+
+```go
+// http.Get()
+func Get(url string) (resp *Response, err error) {...}
+```
+
+- `resp` is actually a `struct` that contains information about the *response* object ([docs](https://pkg.go.dev/net/http@go1.18.1#Response))
   - `resp.Body` is of type `io.ReadCloser`
   - `io.ReadCloser` is an interface
 
@@ -151,24 +173,24 @@ type Closer interface {
 
 So overall, we have:
 
-```sh
+```go
 Response Struct {
     Status string
     StatusCode int
-    Body ReadCloser --> ReadCloser interface {
-        Reader --> Reader interface {
-            Read(p []byte) (n int, err error)
-        }
-        Closer --> Closer interface {
-            Close() error
-        }
+    Body ReadCloser interface {
+         Reader interface {
+                Read(p []byte) (n int, err error)
+         }
+         Closer interface {
+                Close() error
+         }
     }
 }
 ```
 
 ### Additional Interface Syntax
 
-- We can use interface as a type inside of a struct
+- **We can use interface as a type inside of a struct**
   - It means that the field can have any type that can fulfill the contract of the specified interface
   - E.g. `ReadCloser` can take either a `Reader` or a `Closer`
 - **In Go, we can take multiple interfaces and assemble them together to create another interface**
@@ -176,8 +198,8 @@ Response Struct {
 
 ```go
 type ReadCloser interface {
-    Reader  // This is an interface
-    Closer  // This is an interface
+    Reader // This is an interface
+    Closer // This is an interface
 }
 ```
 
@@ -187,29 +209,32 @@ type ReadCloser interface {
 - It is possible for a program to read from different kinds of data sources (e.g. Text Files, HTTP Request Body, Image, User Inputs...)
   - Each one of those handler functions might return different data types
   - Each one of those handler functions might have different custom implementations
-- Without interfaces, we would have to define handler functions for each types
+- Without interfaces, we would have to define handler functions for each type
   - Though those handler functions would have the same logic
-  - The solution to make this more *DRY* is the `Reader` interface
+  - **The solution to make this more *DRY* is the `Reader` interface**
 
 ```sh
 [Different Src Types] --> [Reader] --> Universal Data Format
 ```
 
-- We can think of the interface as an adapter to generalize
+- **We can think of the interface as an adapter to generalize**
   - `Reader` requires to define a function that can output a `[]byte`
   - We can write any different types of functions that can do so
 
 ### The `Read()` Function
 
+```go
+func Read(p []byte) (n int, err error) {...}
+```
+
 - **The `Reader` interface requires the implementation of a `Read()` function**
-  - Called with `[]byte` and returns `(int, error)`
   - Takes the original raw data and feed it into the `[]byte`
   - `[]byte` is passed to `Read` from the thing that wants to consume the data
-  - Remember that a `[]byte` is passed by reference
+  - *Remember that a `[]byte` is passed by reference*
     - Modifying it means modifying the same object in memory
     - Takes advantage of the concept of pointers
-  - `int` is the number of bytes that was read into that slice
-  - `error` when something goes wrong
+  - `n int` is the number of bytes that was read into that slice
+  - `err error` when something goes wrong
 
 So our main function becomes like this:
 
@@ -226,9 +251,12 @@ func main() {
 
     // A byte slice "pointer" for getting the http data
     // make(<type>, <number_of_elements>)
+    // Initialize with a large number to fit what Read() will pass to it
     bs := make([]byte, 99999)
 
-    // Pass the byte slice to the read function
+    // Pass the byte slice to the Read function
+    // Read() does not automatically resize the slice
+    // Only read data into the byte slice until it is fully
     resp.Body.Read(bs)
 
     // Print out the actual byte slice
@@ -238,13 +266,14 @@ func main() {
 
 ### The `Writer` Interface
 
-- Up to now, we have had the following diagram: Working with the `Reader` interface
+- Up to now, we have had the following diagram
+- Working with the `Reader` interface
 
 ```sh
 [Different Src Types] --> [Reader] --> [Universal Data Format: []byte]
 ```
 
-- Go has another interface that can do the exact opposite: `Writer` interface
+- Go has another interface that can do the exact opposite: *`Writer` interface*
   - Describes something that can take info and send it outside of the program
   - Requires to implement a `Write()` function
 
@@ -257,10 +286,15 @@ func main() {
 
 ### The `io.Copy()` function
 
-- `io.Copy` implements the `Writer` interface
+- **`io.Copy()` implements the `Writer` interface**
   - It requires something that implements the `Writer` interface
   - It requires something that implements the `Reader` interface
-  - `Copy(Writer, Reader) (int64, error)`
+  - Takes some information from a source and copy it to some destination location
+
+```go
+Copy(Writer, Reader) (int64, error)
+```
+
 - Here, we will only use the Standard Output (console) for now
   - `os.Stdout` implements the `Writer` interface
     - Actually of type `*File`, which implements the `Writer` interface
@@ -293,7 +327,7 @@ func main() {
 ### Custom `Writer`
 
 - Here is an example of a custom type that implements the `Writer` interface
-  - **A `Writer` implementation must define a `Write()` function**
+- **A `Writer` implementation must define a `Write()` function**
 
 ```go
 type Writer interface {
@@ -306,10 +340,10 @@ type Writer interface {
 ```go
 // Custom Interface
 // ****************
-type logWriter struct{}
+type ILogWriter struct{}
 
-// logWriter implements Writer
-func (logWriter) Write(bs []byte) (int, error) {
+// ILogWriter implements Writer
+func (ILogWriter) Write(bs []byte) (int, error) {
     // Print the byte-slice
     fmt.Println(string(bs))
     // A custom implementation
@@ -333,7 +367,12 @@ func main() {
     }
 
     // Using a custom type that implements the Writer interface
-    lw := logWriter{}
+    lw := ILogWriter{}
     io.Copy(lw, resp.Body)
 }
 ```
+
+- **REMEMBER**
+  - Interfaces helps us go down the right path
+  - But they do not necssarily help us write correct code
+  - Implementing the logic correctly is still necessary
