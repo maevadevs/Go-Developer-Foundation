@@ -77,13 +77,13 @@ func checkUrl(url string, ch chan string) {
 }
 
 // FOR WINDOWS:
-//	To run:					go run 07-Concurrency\src\main.go
-//	To compile:				go build -o 07-Concurrency\bin\concurrency.exe 07-Concurrency\src\main.go
-//	To run after compile:	.\07-Concurrency\bin\concurrency.exe
-//	Compile + Run:			go build -o 07-Concurrency\bin\concurrency.exe 07-Concurrency\src\main.go && .\07-Concurrency\bin\concurrency.exe
+//  To run:                 go run 07-Concurrency\src\main.go
+//  To compile:             go build -o 07-Concurrency\bin\concurrency.exe 07-Concurrency\src\main.go
+//  To run after compile:   .\07-Concurrency\bin\concurrency.exe
+//  Compile + Run:          go build -o 07-Concurrency\bin\concurrency.exe 07-Concurrency\src\main.go && .\07-Concurrency\bin\concurrency.exe
 
 // FOR LINUX:
-//	To run:					go run 07-Concurrency/src/main.go
-//	To compile:				go build -o 07-Concurrency/bin/concurrency 07-Concurrency/src/main.go
-//	To run after compile:	./07-Concurrency/bin/concurrency
-//	Compile + Run:			go build -o 07-Concurrency/bin/concurrency 07-Concurrency/src/main.go && ./07-Concurrency/bin/concurrency
+//  To run:                 go run 07-Concurrency/src/main.go
+//  To compile:             go build -o 07-Concurrency/bin/concurrency 07-Concurrency/src/main.go
+//  To run after compile:   ./07-Concurrency/bin/concurrency
+//  Compile + Run:          go build -o 07-Concurrency/bin/concurrency 07-Concurrency/src/main.go && ./07-Concurrency/bin/concurrency

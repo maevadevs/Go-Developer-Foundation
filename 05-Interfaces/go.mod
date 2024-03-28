@@ -1,3 +1,3 @@
-module ralafi.com/go/learn-golang/interfaces
+module github.com/maevadevs/Go-Developer-Foundation/05-Interfaces
 
-go 1.22.0
+go 1.22.1

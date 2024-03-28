@@ -20,16 +20,18 @@ if test -f ./go.work; then
     sed -i -e "s/go [0-9]\+\.[0-9]\+\.[0-9]\+/go ${go_version}/g" ./go.work
 fi
 
-echo "Replace Go version in go.mod..."
-# Check if a go.work file exist
+echo "Replace Go version in all go.mod..."
+# Check for each module listed in go.work
 for obj in *; do
     if [ -d "$obj" ]; then
+        # Move into the module directory
         cd $obj
         # Check if a go.mod file exist
         if test -f ./go.mod; then
             # Replace go version with current
             sed -i -e "s/go [0-9]\+\.[0-9]\+\.[0-9]\+/go ${go_version}/g" ./go.mod
         fi
+        # Return into the go.work directory
         cd ..
     fi
 done

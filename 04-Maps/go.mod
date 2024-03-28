@@ -1,3 +1,3 @@
-module ralafi.com/go/learn-golang/maps
+module github.com/maevadevs/Go-Developer-Foundation/04-Maps
 
-go 1.22.0
+go 1.22.1

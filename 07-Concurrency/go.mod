@@ -1,3 +1,3 @@
-module ralafi.com/go/learn-golang/concurrncy
+module github.com/maevadevs/Go-Developer-Foundation/07-Concurrency
 
-go 1.22.0
+go 1.22.1

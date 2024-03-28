@@ -1,3 +1,3 @@
-module ralafi.com/go/learn-golang/assignments
+module github.com/maevadevs/Go-Developer-Foundation/06-Assignments
 
-go 1.22.0
+go 1.22.1
