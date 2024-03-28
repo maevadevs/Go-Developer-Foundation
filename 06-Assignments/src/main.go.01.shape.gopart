@@ -51,6 +51,7 @@ func printArea(s IShape) {
 // Main Functions
 // **************
 
+// This is the main entry of the application.
 func main() {
 	// Initialize type instances
 	myTriangle := triangle{
@@ -67,13 +68,13 @@ func main() {
 }
 
 // FOR WINDOWS:
-//	To run:					go run 06-Assignment\src\main.go
-//	To compile:				go build -o 06-Assignment\bin\shapes.exe 06-Assignment\src\main.go
-//	To run after compile:	.\06-Assignment\bin\shapes.exe
-//	Compile + Run:			go build -o 06-Assignment\bin\shapes.exe 06-Assignment\src\main.go && .\06-Assignment\bin\shapes.exe
+//  To run:                 go run 06-Assignment\src\main.go
+//  To compile:             go build -o 06-Assignment\bin\shapes.exe 06-Assignment\src\main.go
+//  To run after compile:   .\06-Assignment\bin\shapes.exe
+//  Compile + Run:          go build -o 06-Assignment\bin\shapes.exe 06-Assignment\src\main.go && .\06-Assignment\bin\shapes.exe
 
 // FOR LINUX:
-//	To run:					go run 06-Assignment/src/main.go
-//	To compile:				go build -o 06-Assignment/bin/shapes 06-Assignment/src/main.go
-//	To run after compile:	./06-Assignment/bin/shapes
-//	Compile + Run:			go build -o 06-Assignment/bin/shapes 06-Assignment/src/main.go && ./06-Assignment/bin/shapes
+//  To run:                 go run 06-Assignment/src/main.go
+//  To compile:             go build -o 06-Assignment/bin/shapes 06-Assignment/src/main.go
+//  To run after compile:   ./06-Assignment/bin/shapes
+//  Compile + Run:          go build -o 06-Assignment/bin/shapes 06-Assignment/src/main.go && ./06-Assignment/bin/shapes

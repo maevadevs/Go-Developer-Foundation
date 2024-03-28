@@ -17,6 +17,7 @@ import (
 
 // Custom Interface
 // ****************
+
 type ILogWriter struct{}
 
 // ILogWriter implements Writer
@@ -48,13 +49,13 @@ func main() {
 }
 
 // FOR WINDOWS:
-//	To run:					go run 05-Interfaces\src\main.go
-//	To compile:				go build -o 05-Interfaces\bin\main.exe 05-Interfaces\src\main.go
-//	To run after compile:	.\05-Interfaces\bin\Program.exe
-//	Compile + Run:			go build -o 05-Interfaces\bin\Program.exe 05-Interfaces\src\main.go && .\05-Interfaces\bin\Program.exe
+//  To run:                 go run 05-Interfaces\src\main.go
+//  To compile:             go build -o 05-Interfaces\bin\main.exe 05-Interfaces\src\main.go
+//  To run after compile:   .\05-Interfaces\bin\Program.exe
+//  Compile + Run:          go build -o 05-Interfaces\bin\Program.exe 05-Interfaces\src\main.go && .\05-Interfaces\bin\Program.exe
 
 // FOR LINUX:
-//	To run:					go run 05-Interfaces/src/main.go
-//	To compile:				go build -o 05-Interfaces/bin/Program 05-Interfaces/src/main.go
-//	To run after compile:	./05-Interfaces/bin/Program
-//	Compile + Run:			go build -o 05-Interfaces/bin/Program 05-Interfaces/src/main.go && ./05-Interfaces/bin/Program
+//  To run:                 go run 05-Interfaces/src/main.go
+//  To compile:             go build -o 05-Interfaces/bin/Program 05-Interfaces/src/main.go
+//  To run after compile:   ./05-Interfaces/bin/Program
+//  Compile + Run:          go build -o 05-Interfaces/bin/Program 05-Interfaces/src/main.go && ./05-Interfaces/bin/Program

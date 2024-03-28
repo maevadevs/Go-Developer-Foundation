@@ -1,6 +1,5 @@
 // Package
 // *******
-
 package main
 
 // Types

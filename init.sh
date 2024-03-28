@@ -85,6 +85,8 @@ import \"fmt\"
 
 // Functions
 // *********
+
+// This is the main entry of the application.
 func main() {
     fmt.Println(\"Hello world!\")
 }

@@ -16,7 +16,7 @@ import (
 // Functions
 // ********
 
-// Main entry of the application.
+// This is the main entry of the application.
 func main() {
 	// A list of urls
 	urls := []string{

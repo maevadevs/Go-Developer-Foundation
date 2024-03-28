@@ -18,6 +18,7 @@ import (
 // Functions
 // *********
 
+// This is the main entry of the application.
 func main() {
 	// Grab the filepath from the user
 	pathStr := os.Args[1]
@@ -43,11 +44,11 @@ func main() {
 }
 
 // FOR WINDOWS:
-//	To compile:				go build -o 06-Assignments\bin\files.exe 06-Assignments\src\main.go
-//	To run after compile:	.\06-Assignments\bin\files.exe 06-Assignments\src\textfile.txt
-//	Compile + Run:			go build -o 06-Assignments\bin\files.exe 06-Assignments\src\main.go && .\06-Assignments\bin\files.exe
+//  To compile:             go build -o 06-Assignments\bin\files.exe 06-Assignments\src\main.go
+//  To run after compile:   .\06-Assignments\bin\files.exe 06-Assignments\src\textfile.txt
+//  Compile + Run:          go build -o 06-Assignments\bin\files.exe 06-Assignments\src\main.go && .\06-Assignments\bin\files.exe
 
 // FOR LINUX:
-//	To compile:				go build -o 06-Assignments/bin/files 06-Assignments/src/main.go
-//	To run after compile:	./06-Assignments/bin/files 06-Assignments/src/textfile.txt
-//	Compile + Run:			go build -o 06-Assignments/bin/files 06-Assignments/src/main.go && ./06-Assignments/bin/files 06-Assignments/src/textfile.txt
+//  To compile:             go build -o 06-Assignments/bin/files 06-Assignments/src/main.go
+//  To run after compile:   ./06-Assignments/bin/files 06-Assignments/src/textfile.txt
+//  Compile + Run:          go build -o 06-Assignments/bin/files 06-Assignments/src/main.go && ./06-Assignments/bin/files 06-Assignments/src/textfile.txt
