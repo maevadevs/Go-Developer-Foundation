@@ -1,4 +1,4 @@
-// PART 4
+// PART 3
 // ******
 // To run this file, rename it to main.go and run as the listed call at the end of the file
 
@@ -11,7 +11,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
 )
 
 // Functions
@@ -41,46 +40,15 @@ func main() {
 	// NOTE: This code is blocking
 	// The main routine will wait here until something happen
 	// Once something happen, it continues execution
+
 	// fmt.Println(<-ch)
 
 	// So we would need to check the channel multiple times for each urls
-	// for i := 0; i < len(urls); i++ {
-	// 	// Receive message from the channel
-	// 	// This is a blocking call
-	// 	fmt.Println(<-ch)
-	// }
 
-	// Keep on checking the url in an infinite loop
-	// for {
-	// 	// Receive message from the channel
-	//     // Span a new go routine to recheck the url again
-	//     // This is a blocking call
-	// 	go checkUrl(<-ch, ch)
-	// }
-
-	// Alternative Syntax: `range` can also be used with channels
-	// Keep on checking the url in an infinite loop
-	// for l := range ch {
-	//     // Receive message from the channel
-	//     // Span a new go routine to recheck the url again
-	//     // This is a blocking call
-	//     go checkUrl(l, ch)
-	// }
-
-	// We should add a slight pause between each new call
-	// Keep on checking the url in an infinite loop
-	for l := range ch {
+	for i := 0; i < len(urls); i++ {
 		// Receive message from the channel
 		// This is a blocking call
-		// Use a function literal so to not block the main routine
-		go func(lnk string) {
-			// NOTE: time.Sleep pauses the current Go Routine, which is the function literal
-			// Pause of 2 seconds
-			time.Sleep(time.Second * 2)
-
-			// Recheck the url again
-			checkUrl(lnk, ch)
-		}(l)
+		fmt.Println(<-ch)
 	}
 }
 
@@ -91,19 +59,21 @@ func main() {
 func checkUrl(url string, ch chan string) {
 	// Test the url with a Get call
 	_, err := http.Get(url)
+	var message string
+
 	// Error Handling
 	if err != nil {
-		fmt.Println(url, "might be down")
-		// Send the url via the channel
-		ch <- url
+		message = fmt.Sprintf("%s might be down", url)
+		// Send message via the channel
+		ch <- message
 		return
 	}
 
 	// Else, we are good
-	fmt.Println(url, "is up")
+	message = fmt.Sprintf("%s is up", url)
 
-	// Send the url via the channel
-	ch <- url
+	// Send message via the channel
+	ch <- message
 }
 
 // FOR WINDOWS:
