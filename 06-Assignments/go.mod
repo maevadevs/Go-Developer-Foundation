@@ -1,3 +1,3 @@
 module github.com/maevadevs/Go-Developer-Foundation/06-Assignments
 
-go 1.22.1
+go 1.22.2

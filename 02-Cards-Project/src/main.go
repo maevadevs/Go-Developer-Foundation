@@ -48,10 +48,13 @@ func main() {
 		panic(err)
 	}
 
+    fmt.Println(currentPath)
+
 	// 1. Get the Project Path via go command
-	goCmd := exec.Command("go", "list", "-m", "-f", "'{{.Dir}}'", "github.com/maevadevs/Go-Developer-Foundation/Cards-Project")
+	goCmd := exec.Command("go", "list", "-m", "-f", "{{.Dir}}", "github.com/maevadevs/Go-Developer-Foundation/02-Cards-Project")
 	projectPathBytes, err := goCmd.Output()
 	if err != nil {
+		fmt.Println(err)
 		panic(err)
 	}
 
@@ -111,7 +114,7 @@ func main() {
 //  Compile + Run:          go build -o 02-Cards-Project\bin\Program.exe 02-Cards-Project\src\*.go && .\02-Cards-Project\bin\Program.exe
 
 // FOR LINUX:
-//  To run:                 go run 02-Cards-Project/src/*.go
+//  To run:                 go run 02-Cards-Project/src/main.go deck.go
 //  To compile:             go build -o 02-Cards-Project/bin/Program 02-Cards-Project/src/*.go
 //  To run after compile:   ./02-Cards-Project/bin/Program
 //  Compile + Run:          go build -o 02-Cards-Project/bin/Program 02-Cards-Project/src/*.go && ./02-Cards-Project/bin/Program
