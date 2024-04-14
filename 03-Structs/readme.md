@@ -23,8 +23,8 @@
 - Can be used to represent complex data structures
 - **We can embbed one struct inside another struct to build complex data structures**
   - We can reuse structs in any way we want
-  - This allows composition of different data structures
-  - *When embedding another struct, we can also skip the `fieldName` and only use the struct type*
+  - This allows *Composition* of different data structures
+  - **When embedding another struct, we can also skip the `fieldName` and only use the struct type**
     - This will have the effect of creating the `fieldName` the same name as the struct name
     - *If the `fieldName` is different than the struct name, then it needs to be explicit*
 
@@ -55,7 +55,10 @@ func main() {
         "Alex",        // firstName
         "Anderson",    // lastName
         // Embedded struct
-        contactInfo{   // contact
+        // When embedding another struct, we can also skip the fieldName
+        // We can just use the struct type
+        // This has the effect of creating the fieldName the same name as the struct name
+        contactInfo{   // contactInfo
             "alex@anderson.com", // email
             12345                // zipCode
         }
@@ -158,11 +161,11 @@ func main() {
 
 ## Pointers and Values
 
-- Previously, we saw that calling `jim.updateFirstName()` did not update the `jim.firstName` field
+- Previously, we saw that calling `jim.updateFirstName()` did not update `jim.firstName` field
 - Why did it not update the first name to `"Jimmy"`?
   - Because of Pointers in Go
   - **A struct variable is a pointer type**
-    - Points to a value stored in memory
+  - Points to a value stored in memory
 - **By default, Go is a *pass-by-value* language**
   - With the way `jim.updateFirstName()` is defined, the *value stored in `jim` is copied* and stored in a new location in memory, which is then used by `updateFirstName()`
   - However, the original variable `jim` is still *pointing* to the old *value*
@@ -318,7 +321,7 @@ var jonCopy person = jon
   - But the reference to the *undelying array* data structure remains
 
 ```go
-funct main() {
+func main() {
     mySlice := []string{"Hi", "there", "how", "are", "you"}
     myArray := [4]string{"This", "is", "an", "Array"}
 
