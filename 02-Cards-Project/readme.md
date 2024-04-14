@@ -54,7 +54,8 @@ In this review, we are implementing [a system of cards and deck](./system-design
 - Variables can be initialized inside or outside of a function
 - **But can only be assigned a value inside a function**
 - Go uses the `var` keyword to declare variables
-- *Variables are typed*: Go is a statically-typed language
+- **Variables are typed**
+  - *Go is a statically-typed language*
 - **Every declared variables must be used**
 
 ### Basic Variable Declaration Format
@@ -75,7 +76,7 @@ var yourCard string = "Jack of Heart"
 
 - `var`
   - Keyword to create a new variable
-  - **Every declared variables must be used**
+  - **Every declared variables must be used at least once**
 - `myCard`
   - Name of the variable
 - `string`
@@ -88,15 +89,15 @@ var yourCard string = "Jack of Heart"
   - `int`
   - `float64`
 - We can also declare only, then assigned a value later
-  - When using this approach, Go assigns the *null*-equivalent default value of the type to the declared variable
+  - When using this approach, Go assigns the *zero*-equivalent default value of the type to the declared variable
 
 ```go
 // Declare variable:
-// Default value for string => ""
+// Default zero-value for string => ""
 var someCard string
 
 // Declare variable:
-// Default value for int => 0
+// Default zero-value for int => 0
 var someInt int
 
 // Assign value to variables later
@@ -106,19 +107,19 @@ someInt = 1001
 
 ### Walrus Variable Declaration Format
 
-- Go can also automatically *infer* the variable type from the assigned value
+- Go can also *automatically infer* the variable type from the assigned value
   - We use `:=` and omit the `var` keyword
   - **Only use `:=` when declaring a new variable *WITH* initialization *AND* type inference**
 
 ```go
 // These are equivalent to the above declarations
-someCard := "5 of Heart"   // type: string
-someInt := 1001            // type: int
+someCard := "5 of Heart"   // Inferred type: string
+someInt := 1001            // Inferred type: int
 ```
 
 ### Re-Assigning Values To Variables
 
-- Obviously, we can re-assign value to any variable
+- Obviously, we can re-assign values to any variable
 - We can only assign value of the same type
 - **However, make sure to use `=` instead of `:=` when re-assigning**
   - `:=` is only used for initializing with type inference
@@ -141,14 +142,22 @@ someInt = 2000
 Only one per project|Can be multiple per project
 Contained in the `main.go` file|Contained in differently-named `.go` files
 Declared with `package main`|Declared with different package names
-This is the entry-point of execution of an executable|These are re-usable blocks of logic
+This is the entry-point of execution of an executable|These are re-usable blocks of logic for *DRY*
 
 ### Basic Function Declaration Format
 
 ```go
-// func <name>(<args?>) <returnType?> { <body> ... <return?> }
+// func <name>(<arg?> <argType?>) <returnType?> {
+//     <body>
+//     ...
+//     <return?>
+// }
+```
+
+```go
 func newCard() string {
-    return "5 of Diamonds"
+    newCard := "5 of Diamonds"
+    return newCard
 }
 ```
 
@@ -168,8 +177,9 @@ func newCard() string {
 - `body`
   - The body of the function's logic
   - Typically ends with a `return` statement to return the value from the function
-  - However, `return` is optional and can be skipped (Match the `returnType` of the function)
-  - A function returning a value needs to declare its `returnType` in its declaration
+  - However, `return` is optional and can be skipped
+  - **Returned value must match the `returnType` of the function**
+  - **A function returning a value needs to declare its `returnType` in its declaration**
 
 ```go
 // Package
@@ -212,7 +222,7 @@ func main() {
 - We can also assign multiple variables using tuple-like unpacking
 
 ```go
-// A function that return a tuple-like (deck, deck)
+// A function that returns a tuple-like (deck, deck)
 func deal(d deck, handSize int) (deck, deck) {
     // Split the original deck into 2 using the handSize
     hand := d[:handSize]
@@ -255,7 +265,7 @@ days := [7]string{
 
 #### Accessing Array Element
 
-- Same element access syntax as typical lists and arrays
+- Same element-access syntax as typical lists and arrays
 
 ```go
 // Accessing an array element
@@ -265,9 +275,9 @@ fmt.Println("Today is", today)
 
 ### Slice
 
-- A bit advanced list of values
+- A bit advanced list of values than arrays
 - 0-based index
-- Same element access syntax as typical lists and arrays
+- Same element-access syntax as typical lists and arrays
 - **Flexible-length: Can grow or shrink in length**
 - **All of its elements must have the same type**
 - Useful when needing to work on dynamic lists
@@ -294,11 +304,12 @@ fruits := []string{
 
 #### Accessing Slice Element
 
-- Same element access syntax as typical lists and arrays
+- Same element-access syntax as typical lists and arrays
+- 0-based indexing
 
 ```go
 // Accessing a slice element
-fruit := fruits[-1]
+fruit := fruits[0]
 fmt.Println("My fruit is", fruit)
 ```
 
@@ -363,7 +374,7 @@ for _, fruit := range allFruits {
   - **We have to set it back to the original variable**
 
 ```go
-// Appending a new
+// Appending a new card
 cards = append(cards, "6 of Spades")
 ```
 
@@ -537,24 +548,24 @@ func newDeck() deck {
 
 - Receiver functions are like *Methods* that we attach to *Types*
 - Receiver functions are called like *Methods* on type instances
-- When attaching to a type, we typically use the initial of the type as the `this` or `self` keywords within the function to refer to the *Instance* of the type
+- When attaching to a type, we typically use the *initial* of the type as the `this` or `self` keywords within the function to refer to the *Instance* of the type
   - This is not a mandate but a generally-accepted convention
   - Example: `deck` -> `d`
 
 #### General Declaration Format Of A Receiver Function
 
 ```go
-func (<t> <type>) <funcName>(<args>) <returnType> {
+func (t <type>) <funcName>(<args>) <returnType> {
     <body>
 }
 ```
 
 - `<type>`
   - The type that we are attaching the receiver function to
-- `<t>`
+- `t`
   - The *Instance Variable*
   - With Go, we never use `this` or `self`
-  - Instead, by convention, we typically use the initial of the type
+  - Instead, by convention, we typically use the *initial* of the type
   - **NOTE: When the instance variable is not being used in the function, we can remove it**
 
 #### Example Of A Receiver Function
@@ -623,7 +634,7 @@ os.WriteFile(
   - Essentially a string of characters in binary format
   - Every element inside a *Byte Slice* correspond to an ASCII character code
   - We can use [asciitable.com](https://asciitable.com) as Xwalk table for the `Dec` column for better comprehension
-  - Essentially, a *Byte Slice* is just another way to represent a string
+  - **Essentially, a *Byte Slice* is just another way to represent a string**
 - `permissions`
   - Unix-like permission in Octal format
   - Returns an `error` type by default
@@ -635,7 +646,7 @@ import (
 )
 ```
 
-- Because `WriteFile()` only takes *Byte Slice*, we need to convert the string to write to file into a *Byte SLice* `[]byte`
+- Because `WriteFile()` only takes *Byte Slice*, we need to convert the string to write to file into a *Byte Slice* `[]byte`
 
 ```go
 // Converting a string to a []byte
@@ -696,8 +707,8 @@ fmt.println(string(greetingByte))
 
 ### Error Handling
 
-- Go does not have a `try-catch` similar-clause
-- Instead, it returns errors as part of the function call
+- **Go does not have a `try-catch` or similar-clauses**
+- Instead, it returns errors-as-values as part of the function call, typically as a second value
 - If there was any error in reading the file, returned `err` will be *not `nil`*
 
 ```go
@@ -755,7 +766,7 @@ fmt.Println(greetingByte)
     - If something is wrong, we use `t` to notify with an error message
     - `t.Errorf()`
       - Allows to return an error with string formatting
-- To run all the tests in the package: `> go test`
+- To run all the tests in the package: `$ go test`
   - **Make sure to run this from the location where the test files are located**
 
 ```go

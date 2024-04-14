@@ -96,7 +96,7 @@ func (d deck) shuffle(times uint) {
 	source := rand.NewSource(time.Now().UnixNano()) // seed
 	randGen := rand.New(source)
 
-	// Suffle whatever times was passed in: t least once
+	// Suffle whatever times was passed in: At least once
 	if times == 0 {
 		times = 1
 	}
