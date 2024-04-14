@@ -16,9 +16,19 @@
 
 In practice, always the same typical pattern
 
-1. **Package Declaration Declaration**
-2. **Imports Packages Packages**
-3. **Define Define Functions & Objects & Objects**
+1. **Package Declaration**
+2. **Imports Packages**
+3. **Define Functions & Objects**
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World!")
+}
+```
 
 ### Package
 
@@ -30,7 +40,8 @@ In practice, always the same typical pattern
   - The very first line of each file in the same package must start with the package declaration
   - This is how we tie all files that are of the same project/package
   - *Package* is more of an abstract way to organize `.go` files
-- There are 2 types of packages:
+
+There are 2 types of packages:
 
 1. **Executable**
      - ***Always `main` package***
@@ -38,11 +49,11 @@ In practice, always the same typical pattern
      - Generates a `.exe`/`.bin` file that we can run after compiling
      - Code used when we want to *do* something: *Executable codes*
 2. **Reusable**
-     - ***Any other package name other than `main`***
+     - ***Any other package names other than `main`***
      - Code used as *helpers* for reusable logic, libraries, dependencies
 
 - *Files in the same package do not have to be imported into each other before they can be used*
-  - If other files are declared with `package main`, the functions they contain can be used here directly
+  - If other files are declared with `package main`, the functions they contain can be used directly
   - *But one of the file must contain the `main()` function as the primary entry point of execution*
 
 ```go
@@ -56,11 +67,11 @@ package main
 - Example: `"fmt"`
   - A standard package within Go ([pkg.go.dev/std/fmt](https://pkg.go.dev/fmt))
   - Short for *format*
-  - Mostly used for debugging and development
+  - Mostly used for debugging, development, and formatting
 - Unless we import a package, we have no access to any functionalities from another package
   - Exception: ***Files in the same package do not have to be imported into each other before they can be used***
 - We are not limited to importing packages from the standard library
-  - We can import packages written by other engineers and 3rd partie as well
+  - We can import packages written by other engineers and 3rd parties as well
 
 ```go
 import "fmt"
@@ -77,7 +88,7 @@ func myFunc(name str, age int) str {
 }
 ```
 
-- A `main` package must have a `main()` function as the entry-point of the execution
+- **A `main` package must have a `main()` function as the entry-point of the execution**
 
 ```go
 func main() {
@@ -102,7 +113,7 @@ $ go run "/full/path/to/file.go"
 Command | Action
 :-|:-
 `go build`|**Compiles** a bunch of Go source code files into executable binaries
-`go run`|**Compiles and executes** a bunch of Go source code files (build + run) *but does not produce an actual executable*
+`go run`|**Compiles and executes** a bunch of Go source code files (build + run) *but does not produce an actual executable (only compiles in-memory)*
 `go fmt`|When run in a directory with `.go` files, **formats** all the code in each file in the directory
 `go install`|**Compiles** and **installs** a package
 `go get`|**Download** the raw source code of someone else's package
@@ -114,7 +125,7 @@ Command | Action
 Module > Package > Source Files
 ```
 
-- *Module* contain one or more *Packages*
+- *Module* contains one or more *Packages*
 - *Package* is made of source files `.go`
   - **A collection of source files `.go` in the same directory that are compiled together**
   - Package is more of an abstract way of organizing and grouping `.go` files
@@ -125,26 +136,26 @@ Module > Package > Source Files
 
 ```tree
 ExeModule/
-|- go.mod
-|- go.sum
-|- src/
-   |- main.go  -- package main
-   |- db.go    -- package helpers
-   |- files.go -- package helpers
+|-- go.mod
+|-- go.sum
+|-- src/
+    |-- main.go  -- package main
+    |-- db.go    -- package helpers
+    |-- files.go -- package helpers
 
 LibModule/
-|- go.mod
-|- go.sum
-|- src/
-   |- sqldb/
-   |  |- mysql.go   -- package sqldb
-   |  |- postgre.go -- package sqldb
-   |- files/
-   |  |- pdf.go     -- package files
-   |  |- csv.go     -- package files
-   |- webserver/
-      |- http.go    -- package webserver
-      |- sftp.go    -- package webserver
+|-- go.mod
+|-- go.sum
+|-- src/
+    |-- sqldb/
+    |   |-- mysql.go   -- package sqldb
+    |   |-- postgre.go -- package sqldb
+    |-- files/
+    |   |-- pdf.go     -- package files
+    |   |-- csv.go     -- package files
+    |-- webserver/
+        |-- http.go    -- package webserver
+        |-- sftp.go    -- package webserver
 ```
 
 - Initialize a directory into a Module with `go mod init path/for/module`
@@ -154,7 +165,8 @@ cd path/to/module/directory
 go mod init unique/path/for/source
 ```
 
-- This creates a `go.mod` file inside of the module folder
+- **This creates a `go.mod` file inside of the module folder**
   - Contains the unique path for the module
   - Contains the version of Go used for the module
-- Typically, the path is on Github but it does not have to: It can be any path
+- Typically, the path is on Github but it does not have to
+  - It can be any path
