@@ -1,3 +1,3 @@
 module github.com/maevadevs/Go-Developer-Foundation/02-Cards-Project
 
-go 1.22.2
+go 1.22.3
